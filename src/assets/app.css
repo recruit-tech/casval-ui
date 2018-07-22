@@ -1,22 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:300');
-
-html {
-  height: 100%;
-}
-
-body {
-  height:100%;
-  background-color: #eeeeee;
-}
-
-body.bo {
-  height:100%;
-  background-color: #ffffff;
-}
-
-img.logo-entrance {
-  height: 2rem;
-}
+@import url('https://fonts.googleapis.com/css?family=Exo+2:600');
 
 img.logo-main {
   height: 1.2rem;
@@ -57,10 +39,6 @@ select.form-control:focus {
   height: 5rem;
 }
 
-.entrance-message {
-  height: 4rem;  
-}
-
 .pt-2rem {
   padding-top: 2rem;
 }
@@ -80,16 +58,4 @@ select.form-control:focus {
   width: 1.5rem !important;
   min-width: 1.5rem;
   padding-bottom: 1rem;
-}
-
-#logofont {
-  font-size: 1.2rem;
-font-family: 'Roboto', sans-serif;
-  color: #868e96;
-}
-#titlefont {
-  font-size: 1.3rem;
-font-family: 'Roboto', sans-serif;
-  color: #868e96;
-
 }

@@ -1,0 +1,15 @@
+{"entrance":
+  {
+    "status": {
+      "loaded": "検査結果の読み込みが完了しました",
+      "loading": "検査結果を読み込んでいます",
+      "invalid-token": "認証情報が正しくありません",
+      "restricted-by-ip": "このIPアドレスからのアクセスは禁止されています",
+      "restricted-by-password": "この検査結果はパスワードで保護されています",
+      "not-found": "指定された検査結果は存在しないか、既に削除されています",
+      "unknown-error": "意図しない不具合が発生しました"
+    },
+    "password": "パスワード",
+    "open": "開く"
+  }
+}

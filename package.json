@@ -10,11 +10,14 @@
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.8",
     "@fortawesome/fontawesome-free-solid": "^5.0.13",
+    "@fortawesome/fontawesome-svg-core": "^1.2.1",
     "@fortawesome/vue-fontawesome": "^0.1.1",
-    "bootstrap": "^4.1.2",
+    "axios": "^0.18.0",
+    "bootstrap": "^4.1.1",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.3",
-    "vue": "^2.5.16"
+    "vue": "^2.5.16",
+    "vue-i18n": "^8.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-rc.5",
@@ -32,7 +35,21 @@
       "plugin:vue/essential",
       "@vue/airbnb"
     ],
-    "rules": {},
+    "rules": {
+      "max-len": 0,
+      "no-console": 0,
+      "vue/attribute-hyphenation": [
+        "error",
+        "always"
+      ],
+      "vue/html-indent": [
+        "error",
+        2
+      ],
+      "vue/html-end-tags": "error",
+      "vue/require-default-prop": "error",
+      "vue/require-prop-types": "error"
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }

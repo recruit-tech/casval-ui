@@ -1,0 +1,15 @@
+{"entrance":
+  {
+    "status": {
+      "loaded": "Loaded successfully.",
+      "loading": "Now loading...",
+      "invalid-token": "Invalid credentials.",
+      "restricted-by-ip": "This audit result is not allowed to access from your IP address.",
+      "restricted-by-password": "This audit result is protected by password.",
+      "not-found": "The audit result you were trying to access doesn't exist or has been removed.",
+      "unknown-error": "Something is technically wrong with the server."
+    },
+    "password": "Password",
+    "open": "Open"
+  }
+}
