@@ -48,7 +48,7 @@ export default {
             break;
           case 400:
             console.log(res);
-            this.errorMessage = this.$i18n.t(`home.target-form.status.${ res.data.error_reason }`);
+            this.errorMessage = this.$i18n.t(`home.target-form.status.${res.data.error_reason}`);
             break;
           case 401:
             this.errorMessage = this.$i18n.t('home.target-form.status.invalid-token');
