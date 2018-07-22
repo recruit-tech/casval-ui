@@ -1,12 +1,14 @@
 <template>
   <div id="app" class="h-100">
-    <entrance :status="status"></entrance>
+    <entrance :status="status" v-if="status !== 'loaded'"></entrance>
+    <home :audit="audit" :audit-api-client="auditApiClient" :scan-api-client="scanApiClient" v-else></home>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
 import Entrance from './components/Entrance.vue';
+import Home from './components/Home.vue';
 
 export default {
   name: 'app',
@@ -19,12 +21,21 @@ export default {
   },
   components: {
     Entrance,
+    Home,
   },
   computed: {
     auditApiClient: function createAuditApiClient() {
       return axios.create({
         baseURL: process.env.VUE_APP_AUDIT_API_ENDPOINT,
         timeout: process.env.VUE_APP_API_TIMEOUT,
+        headers: { Authorization: `Bearer ${this.token}` },
+        validateStatus: () => true,
+      });
+    },
+    scanApiClient: function createScanApiClient() {
+      return axios.create({
+        baseURL: process.env.VUE_APP_SCAN_API_ENDPOINT,
+        timeout: process.env.API_REQUEST_TIMEOUT,
         headers: { Authorization: `Bearer ${this.token}` },
         validateStatus: () => true,
       });
@@ -62,9 +73,9 @@ export default {
         switch (res.status) {
           case 200:
           case 304:
-            this.status = 'loaded';
             this.audit = res.data;
             window.document.title = `${process.env.VUE_APP_TITLE} - ${this.audit.name}`;
+            this.status = 'loaded';
             break;
           case 401:
             this.status = 'invalid-token';
@@ -95,5 +106,6 @@ html {
 }
 body {
   height:100%;
+  background-color: #f0f0f0;
 }
 </style>

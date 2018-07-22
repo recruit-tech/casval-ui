@@ -1,5 +1,5 @@
-{"entrance":
-  {
+{
+  "entrance": {
     "status": {
       "loaded": "検査結果の読み込みが完了しました",
       "loading": "検査結果を読み込んでいます",
@@ -11,5 +11,26 @@
     },
     "password": "パスワード",
     "open": "開く"
+  },
+  "home": {
+    "modal": {
+      "change-contact": "担当者を変更",
+      "restrict-access": "このページへのアクセスを制限",
+      "revoke-page": "このページを削除",
+      "contact-admin": "システム管理者に連絡"
+    },
+    "target-form": {
+      "ip-address-or-host-name": "IPアドレスまたはホスト名",
+      "register-target": "検査対象を登録",
+      "status": {
+        "audit-id-not-found": "指定された検査IDは見つかりません",
+        "audit-submitted": "指定された検査は既に結果を報告済みです",
+        "target-is-private-ip": "プライベートIPアドレスは指定できません",
+        "could-not-resolve-target-fqdn": "指定されたFQDNは名前解決できません",
+        "target-is-not-fqdn-or-ipv4": "FQDNやIPv4アドレスではありません",
+        "invalid-token": "トークンが不正です",
+        "unknown-error": "意図しないエラーが発生しました"
+      }
+    }
   }
 }

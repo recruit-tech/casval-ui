@@ -2,7 +2,7 @@
   <div class="container-fluid h-100 bg-dark">
     <div class="row align-items-center h-100">
       <div class="col text-center">
-        <img src="../assets/logo.svg" class="logo mb-4">
+        <img src="../assets/logo-white.svg" class="logo mb-4">
         <div class="text-light message">
           <font-awesome-icon icon="check-circle" v-if="status === 'loaded'"></font-awesome-icon>
           <font-awesome-icon icon="spinner" pulse v-else-if="status === 'loading'"></font-awesome-icon>
