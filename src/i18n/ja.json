@@ -31,6 +31,15 @@
         "invalid-token": "トークンが不正です",
         "unknown-error": "意図しないエラーが発生しました"
       }
+    },
+    "audit-status-bar": {
+      "submit-ready": "深刻な脆弱性は見つかりませんでした",
+      "submit-completed": "この検査結果は提出を完了しています",
+      "vulnerability-found": "深刻な脆弱性が検出されています。修正して再検査するか、修正しない理由を記述してください",
+      "submission-failure": "検査結果の提出に失敗しました",
+      "withdrawal-failure": "検査結果の取り下げに失敗しました",
+      "submit": "検査結果を提出",
+      "withdrawal": "提出を取り下げる"
     }
   }
 }

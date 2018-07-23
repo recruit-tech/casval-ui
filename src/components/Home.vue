@@ -1,5 +1,5 @@
 <template>
-  <div id="header" class="container-fluid px-0 pb-5">
+  <div id="header" class="container-fluid px-0 pb-0">
     <div class="container-fluid pt-3 pb-3">
       <div class="row">
         <div class="col">
@@ -21,7 +21,7 @@
         </div>
       </div>
     </div>
-    <div class="container pt-2">
+    <div class="container pt-2 pb-5">
       <div class="row">
         <div class="col">
           <p class="h4 text-secondary mb-3"><b>{{ audit.name }}</b></p>
@@ -29,10 +29,12 @@
         </div>
       </div>
     </div>
+    <audit-status-bar :audit="audit" :audit-api-client="auditApiClient" :audit-status="auditStatus"></audit-status-bar>
   </div>
 </template>
 
 <script>
+import AuditStatusBar from './AuditStatusBar.vue';
 import TargetForm from './TargetForm.vue';
 
 export default {
@@ -54,9 +56,11 @@ export default {
   data() {
     return {
       adminContacts: process.env.VUE_APP_ADMIN_CONTACTS,
+      auditStatus: 'ready',
     };
   },
   components: {
+    AuditStatusBar,
     TargetForm,
   },
 };
@@ -69,6 +73,12 @@ img.logo {
 #header {
   background-color: #ffffff;
   border-width: 0px 0px 1px 0px;
+  border-style: solid;
+  border-color: #d7d7d7;
+}
+#result {
+  background-color: #ffffff;
+  border-width: 1px 0px 0px 0px;
   border-style: solid;
   border-color: #d7d7d7;
 }

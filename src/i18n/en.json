@@ -31,6 +31,15 @@
         "invalid-token": "Invalid token",
         "unknown-error": "An unknown error has occurred."
       }
+    },
+    "audit-status-bar": {
+      "submit-ready": "Severe vulnerabilities could not be found.",
+      "submit-completed": "This audit result has been submitted.",
+      "vulnerability-found": "Severe vulnerabilities has been detected. Fix and scan, or write reason why you don't need to fix.",
+      "submission-failure": "Failed to submit the audit result.",
+      "withdrawal-failure": "Failed to withdraw the audit result.",
+      "submit": "Submit the result",
+      "withdrawal": "Withdraw the result"
     }
   }
 }
