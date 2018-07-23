@@ -39,7 +39,8 @@
       "submission-failure": "Failed to submit the audit result.",
       "withdrawal-failure": "Failed to withdraw the audit result.",
       "submit": "Submit the result",
-      "withdrawal": "Withdraw the result"
+      "withdrawal": "Withdraw",
+      "withdrawal-confirmation": "Are you sure you want to withdraw the submission of this audit result?"
     }
   }
 }

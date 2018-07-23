@@ -56,7 +56,7 @@ export default {
   data() {
     return {
       adminContacts: process.env.VUE_APP_ADMIN_CONTACTS,
-      auditStatus: 'ready',
+      auditStatus: '',
     };
   },
   components: {

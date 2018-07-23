@@ -2,7 +2,8 @@
   <div id="result" class="container-fluid pt-3 pb-3" v-if="auditStatus !== ''">
     <div class="row">
       <div class="col text-center" v-if="auditStatus === 'ready'">
-        <span class="text-primary pr-2">
+        <span class="text-secondary pr-2">
+          <font-awesome-icon icon="chevron-circle-right"></font-awesome-icon>
           {{ $t('home.audit-status-bar.submit-ready') }}
         </span>
         <button class="btn btn-primary" @click="submit">
@@ -10,17 +11,18 @@
         </button>
       </div>
       <div class="col text-center" v-if="auditStatus === 'submitted'">
-        <span class="text-dark pr-2">
+        <span class="text-success pr-2">
+          <font-awesome-icon icon="check-circle"></font-awesome-icon>
           {{ $t('home.audit-status-bar.submit-completed') }}
         </span>
-        <button class="btn btn-dark" @click="cancel">
+        <button class="btn btn-outline-secondary disabled" @click="cancel">
           {{ $t('home.audit-status-bar.withdrawal') }}
         </button>
       </div>
       <div class="col text-center" v-if="auditStatus === 'error'">
         <span class="text-danger">
           <font-awesome-icon icon="check-circle" class="mr-1"></font-awesome-icon>
-          <b>{{ $t('home.audit-status-bar.vulnerability-found') }}</b>
+          {{ $t('home.audit-status-bar.vulnerability-found') }}
         </span>
       </div>
     </div>
@@ -62,15 +64,16 @@ export default {
     },
     cancel: async function cancel() {
       try {
-        console.log('cancel!');
-        const res = await this.auditApiClient.delete(`${this.audit.id}/submit`);
-        switch (res.status) {
-          case 200:
-            this.errorMessage = '';
-            this.auditStatus = 'ready';
-            break;
-          default:
-            this.errorMessage = this.$i18n.t('home.audit-status-bar.withdrawal-failure');
+        if (window.confirm(this.$i18n.t('home.audit-status-bar.withdrawal-confirmation'))) {
+          const res = await this.auditApiClient.delete(`${this.audit.id}/submit`);
+          switch (res.status) {
+            case 200:
+              this.errorMessage = '';
+              this.auditStatus = 'ready';
+              break;
+            default:
+              this.errorMessage = this.$i18n.t('home.audit-status-bar.withdrawal-failure');
+          }
         }
       } catch (e) {
         this.errorMessage = this.$i18n.t('home.audit-status-bar.withdrawal-failure');

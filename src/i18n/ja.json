@@ -39,7 +39,8 @@
       "submission-failure": "検査結果の提出に失敗しました",
       "withdrawal-failure": "検査結果の取り下げに失敗しました",
       "submit": "検査結果を提出",
-      "withdrawal": "提出を取り下げる"
+      "withdrawal": "取り下げる",
+      "withdrawal-confirmation": "本当に提出結果を取り下げますか？"
     }
   }
 }

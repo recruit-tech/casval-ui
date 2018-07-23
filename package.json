@@ -37,6 +37,7 @@
     ],
     "rules": {
       "max-len": 0,
+      "no-alert": 0,
       "no-console": 0,
       "vue/attribute-hyphenation": [
         "error",
