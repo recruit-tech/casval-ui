@@ -17,7 +17,15 @@
       "change-contact": "Change contact person",
       "restrict-access": "Restrict access to this page",
       "revoke-page": "Revoke this page",
-      "contact-admin": "Contact system administrators"
+      "contact-admin": "Contact system administrators",
+      "revocation": {
+        "title": "Revoke this page",
+        "message-1": "You won't be able to access this page again.",
+        "message-2": "Are you sure?",
+        "ok": "Revoke",
+        "cancel": "Cancel",
+        "error": "Failed to revoke the page."
+      }
     },
     "target-form": {
       "ip-address-or-host-name": "IP address or host name",

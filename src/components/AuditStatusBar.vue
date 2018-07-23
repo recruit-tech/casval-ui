@@ -49,7 +49,7 @@ export default {
   methods: {
     submit: async function submit() {
       try {
-        const res = await this.auditApiClient.post(`${this.audit.id}/submit`);
+        const res = await this.auditApiClient.post('/submit');
         switch (res.status) {
           case 200:
             this.errorMessage = '';
@@ -65,7 +65,7 @@ export default {
     cancel: async function cancel() {
       try {
         if (window.confirm(this.$i18n.t('home.audit-status-bar.withdrawal-confirmation'))) {
-          const res = await this.auditApiClient.delete(`${this.audit.id}/submit`);
+          const res = await this.auditApiClient.delete('/submit');
           switch (res.status) {
             case 200:
               this.errorMessage = '';

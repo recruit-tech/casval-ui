@@ -17,7 +17,15 @@
       "change-contact": "担当者を変更",
       "restrict-access": "このページへのアクセスを制限",
       "revoke-page": "このページを削除",
-      "contact-admin": "システム管理者に連絡"
+      "contact-admin": "システム管理者に連絡",
+      "revocation": {
+        "title": "このページを削除",
+        "message-1": "このページには二度とアクセスできなくなります。",
+        "message-2": "それでもよろしいですか？",
+        "ok": "削除",
+        "cancel": "キャンセル",
+        "error": "ページの削除に失敗しました"
+      }
     },
     "target-form": {
       "ip-address-or-host-name": "IPアドレスまたはホスト名",

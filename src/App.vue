@@ -15,6 +15,7 @@ export default {
   data() {
     return {
       audit: null,
+      auditId: '',
       status: 'loading',
       token: null,
     };
@@ -26,7 +27,7 @@ export default {
   computed: {
     auditApiClient: function createAuditApiClient() {
       return axios.create({
-        baseURL: process.env.VUE_APP_AUDIT_API_ENDPOINT,
+        baseURL: `${process.env.VUE_APP_AUDIT_API_ENDPOINT}/${this.auditId}`,
         timeout: process.env.VUE_APP_API_TIMEOUT,
         headers: { Authorization: `Bearer ${this.token}` },
         validateStatus: () => true,
@@ -45,11 +46,11 @@ export default {
     generateToken: async function generateToken(auditId, password) {
       this.status = 'loading';
       try {
-        const res = await this.auditApiClient.post(`${auditId}/tokens`, { password });
+        const res = await this.auditApiClient.post('/tokens', { password });
         switch (res.status) {
           case 201:
             this.token = res.data.token;
-            this.getAudit(auditId);
+            this.getAudit();
             break;
           case 401:
             this.status = 'restricted-by-password';
@@ -67,9 +68,9 @@ export default {
         this.status = 'unknown-error';
       }
     },
-    getAudit: async function getAudit(auditId) {
+    getAudit: async function getAudit() {
       try {
-        const res = await this.auditApiClient.get(auditId);
+        const res = await this.auditApiClient.get();
         switch (res.status) {
           case 200:
           case 304:
@@ -92,9 +93,10 @@ export default {
     },
   },
   created: function created() {
+    this.auditId = window.location.hash.substring(2) || '';
+
     window.eventBus.$on('INITIALIZE_TOKEN', (password) => {
-      const auditId = window.location.hash.substring(2) || '';
-      this.generateToken(auditId, password);
+      this.generateToken(password);
     });
   },
 };
