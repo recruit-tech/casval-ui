@@ -1,4 +1,4 @@
-# Casval (Casual Vulnerability Analyzer) UI
+# CASVAL (CASual Vulnerability AnaLyzer) UI
 
 ## Project setup
 ```
