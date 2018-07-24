@@ -11,22 +11,22 @@
           </div>
           <div class="card-body">
             <p class="card-text text-primary" v-if="scan.calculatedState==='unscheduled'">
-              <font-awesome-icon icon="calendar-minus"></font-awesome-icon> 検査を予約してください。
+              <font-awesome-icon icon="calendar-minus"></font-awesome-icon> {{ $t('home.scan.status.unscheduled') }}
             </p>
             <p class="card-text text-secondary" v-else-if="scan.calculatedState==='scheduled'">
-              <font-awesome-icon icon="calendar"></font-awesome-icon> 検査が行われるまでお待ちください。
+              <font-awesome-icon icon="calendar"></font-awesome-icon> {{ $t('home.scan.status.scheduled') }}
             </p>
             <p class="card-text text-primary" v-else-if="scan.calculatedState==='failure'">
-              <font-awesome-icon icon="calendar-times"></font-awesome-icon> 検査に失敗しました。再予約してください。
+              <font-awesome-icon icon="calendar-times"></font-awesome-icon> {{ $t('home.scan.status.failure') }}
             </p>
             <p class="card-text text-success" v-else-if="scan.calculatedState==='safe'">
-              <font-awesome-icon icon="check-circle"></font-awesome-icon> 修正を要する脆弱性はありません。
+              <font-awesome-icon icon="check-circle"></font-awesome-icon> {{ $t('home.scan.status.safe') }}
             </p>
             <p class="card-text text-danger" v-else-if="scan.calculatedState==='unsafe'">
-              <font-awesome-icon icon="exclamation-circle"></font-awesome-icon> 脆弱性が検出されています。
+              <font-awesome-icon icon="exclamation-circle"></font-awesome-icon> {{ $t('home.scan.status.unsafe') }}
             </p>
             <p class="card-text text-secondary" v-else>
-              <font-awesome-icon icon="spinner" pulse></font-awesome-icon> スキャン情報を読み込み中です。
+              <font-awesome-icon icon="spinner" pulse></font-awesome-icon> {{ $t('home.scan.status.loading') }}
             </p>
           </div>
           <hr class="my-0">

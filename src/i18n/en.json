@@ -13,6 +13,16 @@
     "open": "Open"
   },
   "home": {
+    "scan": {
+      "status": {
+        "unscheduled": "Schedule a scan for the target.",
+        "scheduled": "Wait for completion of scheduled scan.",
+        "failure": "Failed to scan the target, schedule a scan again.",
+        "safe": "Scan has been completed successfully.",
+        "unsafe": "Severe vulnerabilities has been detected. Please respond to the vulnerabilities.",
+        "loading": "Loading scan information."
+      }
+    },
     "modal": {
       "change-contact": "Change contacts",
       "restrict-access": "Restrict access to this page",
