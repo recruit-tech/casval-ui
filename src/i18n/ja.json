@@ -37,6 +37,19 @@
         "error-invalid-email": "{email} は正しいメールアドレスではありません",
         "error-no-name": "担当者は空にできません",
         "error-general": "担当者の変更に失敗しました"
+      },
+      "access-restriction": {
+        "title": "このページへのアクセスを制限",
+        "message": "このページに施すアクセス制限を指定してください。",
+        "ip-restriction": "IPアドレス制限",
+        "enable": "有効",
+        "disable": "無効",
+        "password-restriction": "パスワード制限",
+        "password": "パスワード",
+        "ok": "適用",
+        "cancel": "キャンセル",
+        "error-invalid-password": "{minLength}文字以上のパスワードを入力してください",
+        "error-general": "アクセス制限の適用に失敗しました"
       }
     },
     "target-form": {

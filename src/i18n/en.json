@@ -37,6 +37,19 @@
         "error-invalid-email": "{email} is not an valid e-mail address.",
         "error-no-name": "Name field cannot be empty.",
         "error-general": "Failed to register new contacts."
+      },
+      "access-restriction": {
+        "title": "Restrict access to this page",
+        "message": "Specify access control to be applied for this page.",
+        "ip-restriction": "IP address restriction",
+        "enable": "Enable",
+        "disable": "Disable",
+        "password-restriction": "Password restriction",
+        "password": "Password",
+        "ok": "Apply",
+        "cancel": "Cancel",
+        "error-invalid-password": "Specify password that length is more than or equals to {minLength}.",
+        "error-general": "Failed to apply access control."
       }
     },
     "target-form": {

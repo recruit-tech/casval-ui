@@ -23,7 +23,6 @@
 </template>
 
 <script>
-import $ from 'jquery';
 import 'bootstrap';
 
 export default {
@@ -46,7 +45,6 @@ export default {
         const res = await this.auditApiClient.delete();
         switch (res.status) {
           case 204: {
-            $('#modal-revocation').modal('hide');
             window.location.reload(true);
             break;
           }

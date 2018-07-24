@@ -33,12 +33,14 @@
       <audit-status-bar :audit="audit" :audit-api-client="auditApiClient" :audit-status="auditStatus"></audit-status-bar>
     </div>
     <modal-contacts :audit="audit" :audit-api-client="auditApiClient"></modal-contacts>
+    <modal-access-restriction :audit="audit" :audit-api-client="auditApiClient"></modal-access-restriction>
     <modal-revocation :audit-api-client="auditApiClient"></modal-revocation>
   </div>
 </template>
 
 <script>
 import AuditStatusBar from './AuditStatusBar.vue';
+import ModalAccessRestriction from './ModalAccessRestriction.vue';
 import ModalContacts from './ModalContacts.vue';
 import ModalRevocation from './ModalRevocation.vue';
 import TargetForm from './TargetForm.vue';
@@ -67,6 +69,7 @@ export default {
   },
   components: {
     AuditStatusBar,
+    ModalAccessRestriction,
     ModalContacts,
     ModalRevocation,
     TargetForm,
