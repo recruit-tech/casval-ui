@@ -85,7 +85,7 @@ export default {
       }
 
       try {
-        const res = await this.auditApiClient.put(null, {
+        const res = await this.auditApiClient.patch(null, {
           contacts: filteredContacts,
         });
         switch (res.status) {

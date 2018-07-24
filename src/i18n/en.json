@@ -48,7 +48,7 @@
         "password": "Password",
         "ok": "Apply",
         "cancel": "Cancel",
-        "error-invalid-password": "Specify password that length is more than or equals to {minLength}.",
+        "error-invalid-password": "Specify password that length is more than or equals to {minLength} .",
         "error-general": "Failed to apply access control."
       }
     },
