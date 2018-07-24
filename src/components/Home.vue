@@ -86,7 +86,6 @@ export default {
   data() {
     return {
       adminContacts: process.env.VUE_APP_ADMIN_CONTACTS,
-      auditStatus: '',
       scans: {},
       scanOrder: [],
     };
@@ -98,6 +97,27 @@ export default {
     ModalRevocation,
     ScanPanel,
     TargetForm,
+  },
+  computed: {
+    auditStatus: function auditStatus() {
+      if (this.audit.submitted) {
+        return 'submitted';
+      }
+      if (this.scans.length > 0) {
+        // eslint-disable-next-line consistent-return
+        this.scans.forEach((scan) => {
+          if (scan.calculatedState === 'unsafe') {
+            return 'fatal';
+          }
+          if (scan.calculatedState !== 'safe') {
+            return 'ongoing';
+          }
+        });
+      } else {
+        return 'ongoing';
+      }
+      return 'submit-ready';
+    },
   },
   created: function created() {
     window.eventBus.$on('AUDIT_UPDATED', async (data) => {
