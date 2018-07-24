@@ -1,7 +1,7 @@
 <template>
-  <div id="result" class="container-fluid pt-3 pb-3" v-if="auditStatus !== ''">
+  <div id="result" class="container-fluid pt-3 pb-3" v-if="auditStatus !== 'ongoing'">
     <div class="row">
-      <div class="col text-center" v-if="auditStatus === 'ready'">
+      <div class="col text-center" v-if="auditStatus === 'submit-ready'">
         <span class="text-secondary pr-2">
           <font-awesome-icon icon="chevron-circle-right"></font-awesome-icon>
           {{ $t('home.audit-status-bar.submit-ready') }}
@@ -19,7 +19,7 @@
           {{ $t('home.audit-status-bar.withdrawal') }}
         </button>
       </div>
-      <div class="col text-center" v-if="auditStatus === 'error'">
+      <div class="col text-center" v-if="auditStatus === 'fatal'">
         <span class="text-danger">
           <font-awesome-icon icon="check-circle" class="mr-1"></font-awesome-icon>
           {{ $t('home.audit-status-bar.vulnerability-found') }}
