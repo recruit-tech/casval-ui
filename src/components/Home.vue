@@ -32,12 +32,14 @@
       </div>
       <audit-status-bar :audit="audit" :audit-api-client="auditApiClient" :audit-status="auditStatus"></audit-status-bar>
     </div>
+    <modal-contacts :audit="audit" :audit-api-client="auditApiClient"></modal-contacts>
     <modal-revocation :audit-api-client="auditApiClient"></modal-revocation>
   </div>
 </template>
 
 <script>
 import AuditStatusBar from './AuditStatusBar.vue';
+import ModalContacts from './ModalContacts.vue';
 import ModalRevocation from './ModalRevocation.vue';
 import TargetForm from './TargetForm.vue';
 
@@ -65,6 +67,7 @@ export default {
   },
   components: {
     AuditStatusBar,
+    ModalContacts,
     ModalRevocation,
     TargetForm,
   },
@@ -90,11 +93,6 @@ img.logo {
 </style>
 
 <style>
-select.form-control:focus {
-  box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0), 0 0 8px rgba(0, 0, 0, 0);
-  border-width: 2px;
-}
-
 .pt-2rem {
   padding-top: 2rem;
 }
@@ -102,14 +100,6 @@ select.form-control:focus {
 .padding-quarter {
   padding-left: 0.25rem;
 }
-
-.input-contacts {
-  border-left-width: 0px;
-  border-right-width: 0px;
-  border-top-width: 0px;
-  border-bottom-width: 1px;
-}
-
 .result-icon {
   width: 1.5rem !important;
   min-width: 1.5rem;

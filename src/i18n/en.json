@@ -14,7 +14,7 @@
   },
   "home": {
     "modal": {
-      "change-contact": "Change contact person",
+      "change-contact": "Change contacts",
       "restrict-access": "Restrict access to this page",
       "revoke-page": "Revoke this page",
       "contact-admin": "Contact system administrators",
@@ -25,6 +25,18 @@
         "ok": "Revoke",
         "cancel": "Cancel",
         "error": "Failed to revoke the page."
+      },
+      "contacts": {
+        "title": "Change contacts",
+        "message": "Register name and e-mail address of contact persons.",
+        "name": "Name",
+        "email": "E-mail address",
+        "ok": "Register",
+        "cancel": "Cancel",
+        "error-no-email": "Specify an e-mail address of {name}.",
+        "error-invalid-email": "{email} is not an valid e-mail address.",
+        "error-no-name": "Name field cannot be empty.",
+        "error-general": "Failed to register new contacts."
       }
     },
     "target-form": {

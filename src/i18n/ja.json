@@ -25,6 +25,18 @@
         "ok": "削除",
         "cancel": "キャンセル",
         "error": "ページの削除に失敗しました"
+      },
+      "contacts": {
+        "title": "担当者を変更",
+        "message": "担当者の名前と連絡先を登録してください。",
+        "name": "名前",
+        "email": "メールアドレス",
+        "ok": "変更",
+        "cancel": "キャンセル",
+        "error-no-email": "{name} さんのメールアドレスを入力してください",
+        "error-invalid-email": "{email} は正しいメールアドレスではありません",
+        "error-no-name": "担当者は空にできません",
+        "error-general": "担当者の変更に失敗しました"
       }
     },
     "target-form": {
