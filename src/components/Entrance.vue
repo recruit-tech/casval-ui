@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     generateToken: async function generateToken() {
-      window.eventBus.$emit('INITIALIZE_TOKEN', this.password);
+      window.eventBus.$emit('TOKEN_REQUESTED', this.password);
       this.password = '';
     },
   },

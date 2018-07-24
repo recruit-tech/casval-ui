@@ -32,6 +32,9 @@
       </div>
       <audit-status-bar :audit="audit" :audit-api-client="auditApiClient" :audit-status="auditStatus"></audit-status-bar>
     </div>
+    <div v-for="scanId in scanOrder" :key="scanId">
+      <scan-panel :scan="scans[scanId]" :scan-api-client="scanApiClient"></scan-panel>
+    </div>
     <modal-contacts :audit="audit" :audit-api-client="auditApiClient"></modal-contacts>
     <modal-access-restriction :audit="audit" :audit-api-client="auditApiClient"></modal-access-restriction>
     <modal-revocation :audit-api-client="auditApiClient"></modal-revocation>
@@ -39,11 +42,30 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import AuditStatusBar from './AuditStatusBar.vue';
 import ModalAccessRestriction from './ModalAccessRestriction.vue';
 import ModalContacts from './ModalContacts.vue';
 import ModalRevocation from './ModalRevocation.vue';
+import ScanPanel from './ScanPanel.vue';
 import TargetForm from './TargetForm.vue';
+
+function getScanStatus(scan) {
+  if (scan.status.scheduled === true) {
+    return 'scheduled';
+  } else if (scan.status.scheduled === false && scan.status.processed === false) {
+    return 'unscheduled';
+  } else if (scan.status.scheduled === false && scan.status.processed === true) {
+    if (scan.error_reason.length > 0) {
+      return 'failure';
+    }
+    if (scan.results.some(result => result.fix_required) || scan.comment.length > 0) {
+      return 'safe';
+    }
+    return 'unsafe';
+  }
+  return 'unknown-state';
+}
 
 export default {
   name: 'Home',
@@ -65,6 +87,8 @@ export default {
     return {
       adminContacts: process.env.VUE_APP_ADMIN_CONTACTS,
       auditStatus: '',
+      scans: {},
+      scanOrder: [],
     };
   },
   components: {
@@ -72,7 +96,48 @@ export default {
     ModalAccessRestriction,
     ModalContacts,
     ModalRevocation,
+    ScanPanel,
     TargetForm,
+  },
+  created: function created() {
+    window.eventBus.$on('AUDIT_UPDATED', async (data) => {
+      Object.keys(data).forEach((key) => {
+        // todo
+        console.log(key);
+      });
+    });
+    window.eventBus.$on('SCAN_REGISTERED', async (scanId) => {
+      this.scanOrder.unshift(scanId);
+      Vue.set(this.scans, scanId, { id: scanId, target: '', calculatedState: 'loading' });
+      window.eventBus.$emit('SCAN_UPDATED', scanId);
+    });
+    window.eventBus.$on('SCAN_UPDATED', async (scanId) => {
+      try {
+        const res = await this.scanApiClient.get(scanId);
+        switch (res.status) {
+          case 200: {
+            const scan = res.data;
+            scan.calculatedState = getScanStatus(scan);
+            Vue.set(this.scans, scanId, scan);
+            break;
+          }
+          default: {
+            console.error(`Loading Failure: scanId=${scanId}, status=${res.status}`);
+            break;
+          }
+        }
+      } catch (e) {
+        console.error(`Loading Failure: scanId=${scanId}, exception=${e.message}`);
+      }
+    });
+    window.eventBus.$on('SCAN_DELETED', async (scanId) => {
+      const index = this.audit.scans.indexOf(scanId);
+      Vue.delete(this.scanOrder, index);
+      Vue.delete(this.scans, scanId);
+    });
+    this.audit.scans.forEach((scanId) => {
+      window.eventBus.$emit('SCAN_REGISTERED', scanId);
+    });
   },
 };
 </script>

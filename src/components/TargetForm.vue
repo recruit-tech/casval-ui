@@ -44,7 +44,7 @@ export default {
           case 304:
             this.target = '';
             this.errorMessage = '';
-            window.eventBus.$emit('SCAN_UPDATED', res.data.scan_id);
+            window.eventBus.$emit('SCAN_REGISTERED', res.data.id);
             break;
           case 400:
             console.log(res);

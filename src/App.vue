@@ -75,8 +75,8 @@ export default {
           case 200:
           case 304:
             this.audit = res.data;
-            window.document.title = `${process.env.VUE_APP_TITLE} - ${this.audit.name}`;
             this.status = 'loaded';
+            window.document.title = `${process.env.VUE_APP_TITLE} - ${this.audit.name}`;
             break;
           case 401:
             this.status = 'invalid-token';
@@ -94,8 +94,7 @@ export default {
   },
   created: function created() {
     this.auditId = window.location.hash.substring(2) || '';
-
-    window.eventBus.$on('INITIALIZE_TOKEN', (password) => {
+    window.eventBus.$on('TOKEN_REQUESTED', (password) => {
       this.generateToken(password);
     });
   },
