@@ -2,16 +2,16 @@
   <div class="container pt-2rem">
     <div class="row">
       <div class="col align-items-center">
-        <div class="card">
-          <div class="card-header">
+        <div class="card" :class="cardBorderClass">
+          <div class="card-header bg-white">
             <span><b><a :name="scan.scan_id">{{ scan.target }}</a></b></span>
             <span class="float-right">
               <button type="button" class="close" @click="deleteScan"><span>&times;</span></button>
             </span>
           </div>
-          <div class="card-body">
+          <div class="card-header bg-white">
             <p class="card-text text-primary" v-if="scan.calculatedState==='unscheduled'">
-              <font-awesome-icon icon="calendar-minus"></font-awesome-icon> {{ $t('home.scan.status.unscheduled') }}
+              {{ $t('home.scan.status.unscheduled') }}
             </p>
             <p class="card-text text-secondary" v-else-if="scan.calculatedState==='scheduled'">
               <font-awesome-icon icon="calendar"></font-awesome-icon> {{ $t('home.scan.status.scheduled') }}
@@ -29,8 +29,8 @@
               <font-awesome-icon icon="spinner" pulse></font-awesome-icon> {{ $t('home.scan.status.loading') }}
             </p>
           </div>
-          <hr class="my-0">
-          <div class="card-body">ToDo
+          <div class="card-body">
+            <scan-panel-unscheduled v-if="scan.calculatedState==='unscheduled'" :scan="scan" :scan-api-client="scanApiClient"></scan-panel-unscheduled>
           </div>
         </div>
       </div>
@@ -39,6 +39,8 @@
 </template>
 
 <script>
+import ScanPanelUnscheduled from './ScanPanelUnscheduled.vue';
+
 export default {
   name: 'ScanPanel',
   props: {
@@ -50,6 +52,16 @@ export default {
       type: Function,
       required: true,
     },
+  },
+  computed: {
+    cardBorderClass: function cardBorderClass() {
+      return {
+        'border-primary': this.scan.calculatedState === 'unscheduled',
+      };
+    },
+  },
+  components: {
+    ScanPanelUnscheduled,
   },
   methods: {
     deleteScan: async function deleteScan() {

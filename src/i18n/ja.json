@@ -21,6 +21,18 @@
         "safe": "スキャンが完了しました。",
         "unsafe": "深刻な脆弱性が検出されています。",
         "loading": "スキャン情報を読み込み中です。"
+      },
+      "datetime": {
+        "date": "YYYY年MM月DD日 (ddd)",
+        "time": "{hour} 時"
+      },
+      "schedule": {
+        "start-datetime": "開始日時",
+        "date-unspecified": "指定なし",
+        "time-unspecified": "時間指定なし",
+        "expiration-datetime": "終了期限",
+        "schedule-scan": "検査を予約",
+        "error-general": "スケジュールの登録に失敗しました"
       }
     },
     "modal": {

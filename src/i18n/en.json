@@ -21,6 +21,18 @@
         "safe": "Scan has been completed successfully.",
         "unsafe": "Severe vulnerabilities has been detected. Please respond to the vulnerabilities.",
         "loading": "Loading scan information."
+      },
+      "datetime": {
+        "date": "DD/MM/YYYY (ddd)",
+        "time": "{hour}:00"
+      },
+      "schedule": {
+        "start-datetime": "Start datetime",
+        "date-unspecified": "Unspecified",
+        "time-unspecified": "Time unspecified",
+        "expiration-datetime": "Expiration datetime",
+        "schedule-scan": "Schedule",
+        "error-general": "Failed to set the schedule."
       }
     },
     "modal": {
