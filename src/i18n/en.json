@@ -24,7 +24,8 @@
       },
       "datetime": {
         "date": "DD/MM/YYYY (ddd)",
-        "time": "{hour}:00"
+        "time": "{hour}:00",
+        "date-hour": "DD/MM/YYYY (ddd) HH:00"
       },
       "schedule": {
         "start-datetime": "Start datetime",
@@ -32,7 +33,10 @@
         "time-unspecified": "Time unspecified",
         "expiration-datetime": "Expiration datetime",
         "schedule-scan": "Schedule",
-        "error-general": "Failed to set the schedule."
+        "error-general": "Failed to set the schedule.",
+        "scan-schedule": "Scan the target between {start} - {end}.",
+        "cancel": "Cancel",
+        "error-deletion": "Failed to delete the scan."
       }
     },
     "modal": {

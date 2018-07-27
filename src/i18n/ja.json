@@ -24,7 +24,8 @@
       },
       "datetime": {
         "date": "YYYY年MM月DD日 (ddd)",
-        "time": "{hour} 時"
+        "time": "{hour} 時",
+        "date-hour": "YYYY年MM月DD日 (ddd) HH時"
       },
       "schedule": {
         "start-datetime": "開始日時",
@@ -32,7 +33,10 @@
         "time-unspecified": "時間指定なし",
         "expiration-datetime": "終了期限",
         "schedule-scan": "検査を予約",
-        "error-general": "スケジュールの登録に失敗しました"
+        "error-general": "スケジュールの登録に失敗しました",
+        "scan-schedule": "{start} - {end}の間にスキャンします",
+        "cancel": "キャンセル",
+        "error-deletion": "スケジュールの削除に失敗しました"
       }
     },
     "modal": {

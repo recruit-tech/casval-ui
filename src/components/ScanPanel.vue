@@ -14,7 +14,7 @@
               {{ $t('home.scan.status.unscheduled') }}
             </p>
             <p class="card-text text-secondary" v-else-if="scan.calculatedState==='scheduled'">
-              <font-awesome-icon icon="calendar"></font-awesome-icon> {{ $t('home.scan.status.scheduled') }}
+              {{ $t('home.scan.status.scheduled') }}
             </p>
             <p class="card-text text-primary" v-else-if="scan.calculatedState==='failure'">
               <font-awesome-icon icon="calendar-times"></font-awesome-icon> {{ $t('home.scan.status.failure') }}
@@ -31,6 +31,7 @@
           </div>
           <div class="card-body">
             <scan-panel-unscheduled v-if="scan.calculatedState==='unscheduled'" :scan="scan" :scan-api-client="scanApiClient"></scan-panel-unscheduled>
+            <scan-panel-scheduled v-if="scan.calculatedState==='scheduled'" :scan="scan" :scan-api-client="scanApiClient"></scan-panel-scheduled>
           </div>
         </div>
       </div>
@@ -40,6 +41,7 @@
 
 <script>
 import ScanPanelUnscheduled from './ScanPanelUnscheduled.vue';
+import ScanPanelScheduled from './ScanPanelScheduled.vue';
 
 export default {
   name: 'ScanPanel',
@@ -62,6 +64,7 @@ export default {
   },
   components: {
     ScanPanelUnscheduled,
+    ScanPanelScheduled,
   },
   methods: {
     deleteScan: async function deleteScan() {
