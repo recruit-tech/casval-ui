@@ -30,10 +30,10 @@
             </p>
           </div>
           <div class="card-body">
-            <scan-panel-scheduler v-if="scan.calculatedState==='unscheduled'" :scan="scan" :scan-api-client="scanApiClient"></scan-panel-scheduler>
-            <scan-panel-scheduled v-if="scan.calculatedState==='scheduled'" :scan="scan" :scan-api-client="scanApiClient"></scan-panel-scheduled>
-            <scan-panel-scheduler v-if="scan.calculatedState==='failure'" :scan="scan" :scan-api-client="scanApiClient"></scan-panel-scheduler>
-            <scan-panel-safe v-if="scan.calculatedState==='safe'" :scan="scan" :scan-api-client="scanApiClient"></scan-panel-safe>
+            <scan-panel-comment v-if="requireComment" :scan="scan" :scan-api-client="scanApiClient"></scan-panel-comment>
+            <scan-panel-scheduled v-else-if="scan.calculatedState==='scheduled'" :scan="scan" :scan-api-client="scanApiClient"></scan-panel-scheduled>
+            <scan-panel-scheduler v-else-if="scan.calculatedState==='unscheduled' || scan.calculatedState==='failure' || requireReschedule" :scan="scan" :scan-api-client="scanApiClient"></scan-panel-scheduler>
+            <scan-panel-result v-else-if="scan.calculatedState==='safe' || scan.calculatedState==='unsafe'" :scan="scan" :scan-api-client="scanApiClient"></scan-panel-result>
           </div>
         </div>
       </div>
@@ -42,7 +42,8 @@
 </template>
 
 <script>
-import ScanPanelSafe from './ScanPanelSafe.vue';
+import ScanPanelComment from './ScanPanelComment.vue';
+import ScanPanelResult from './ScanPanelResult.vue';
 import ScanPanelScheduled from './ScanPanelScheduled.vue';
 import ScanPanelScheduler from './ScanPanelScheduler.vue';
 
@@ -58,16 +59,23 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      requireComment: false,
+      requireReschedule: false,
+    };
+  },
   computed: {
     cardBorderClass: function cardBorderClass() {
       return {
         'border-primary': this.scan.calculatedState === 'unscheduled',
-        'border-danger': this.scan.calculatedState === 'failure',
+        'border-danger': this.scan.calculatedState === 'failure' || this.scan.calculatedState === 'unsafe',
       };
     },
   },
   components: {
-    ScanPanelSafe,
+    ScanPanelComment,
+    ScanPanelResult,
     ScanPanelScheduled,
     ScanPanelScheduler,
   },

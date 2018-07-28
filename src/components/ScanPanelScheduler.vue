@@ -2,7 +2,7 @@
   <div>
     <div class="row mb-3" v-if="scan.error_reason.length > 0">
       <div class="col">
-        <small class="text-danger">{{ scan.error_reason }}</small>
+        <small class="text-danger">{{ errorMessage }}</small>
       </div>
     </div>
     <div class="row">
@@ -53,14 +53,9 @@
       </div>
       <div class="col-6"></div>
     </div>
-    <div class="row">
-      <div class="col">
-        <small class="text-danger">{{ errorMessage }}</small>
-      </div>
-    </div>
-    <div class="row">
+    <div class="row mt-4">
       <div class="col text-right">
-        <button v-if="this.$parent.reschedule" class="btn btn-outline-secondary mr-3" @click="cancelReschedule">
+        <button v-if="this.$parent.requireReschedule" class="btn btn-outline-secondary mr-3" @click="cancelReschedule">
           <font-awesome-icon icon="arrow-left"></font-awesome-icon>
           {{ $t('home.scan.schedule.return') }}
         </button>
@@ -88,7 +83,7 @@ export default {
   data() {
     return {
       currentTime: null,
-      errorMessage: '',
+      errorMessage: this.scan.error_reason,
       startDate: '',
       startTime: '',
       endDate: '',
@@ -97,7 +92,7 @@ export default {
   },
   methods: {
     cancelReschedule: async function cancelReschedule() {
-      this.$parent.reschedule = false;
+      this.$parent.requireReschedule = false;
     },
     setSchedule: async function setSchedule() {
       let registerStartDate = this.startDate;
@@ -127,6 +122,7 @@ export default {
         switch (res.status) {
           case 200: {
             this.errorMessage = '';
+            this.$parent.requireReschedule = false;
             window.eventBus.$emit('SCAN_UPDATED', this.scan.id);
             break;
           }

@@ -42,7 +42,10 @@
       "result": {
         "download-results": "Download scan result",
         "ignore-fix": "Ignore fix",
-        "reschedule-scan": "Reschedule"
+        "reschedule-scan": "Reschedule",
+        "input-reason": "Write decided reason why you don't need to fix the vulnerabilities (remining {reminingLength} characters).",
+        "reason": "Decided reason",
+        "register-reason": "Register reason"
       }
     },
     "modal": {
