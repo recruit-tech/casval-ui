@@ -16,7 +16,7 @@
             <p class="card-text text-secondary" v-else-if="scan.calculatedState==='scheduled'">
               {{ $t('home.scan.status.scheduled') }}
             </p>
-            <p class="card-text text-primary" v-else-if="scan.calculatedState==='failure'">
+            <p class="card-text text-danger" v-else-if="scan.calculatedState==='failure'">
               <font-awesome-icon icon="calendar-times"></font-awesome-icon> {{ $t('home.scan.status.failure') }}
             </p>
             <p class="card-text text-success" v-else-if="scan.calculatedState==='safe'">
@@ -32,6 +32,7 @@
           <div class="card-body">
             <scan-panel-unscheduled v-if="scan.calculatedState==='unscheduled'" :scan="scan" :scan-api-client="scanApiClient"></scan-panel-unscheduled>
             <scan-panel-scheduled v-if="scan.calculatedState==='scheduled'" :scan="scan" :scan-api-client="scanApiClient"></scan-panel-scheduled>
+            <scan-panel-unscheduled v-if="scan.calculatedState==='failure'" :scan="scan" :scan-api-client="scanApiClient"></scan-panel-unscheduled>
           </div>
         </div>
       </div>
@@ -59,6 +60,7 @@ export default {
     cardBorderClass: function cardBorderClass() {
       return {
         'border-primary': this.scan.calculatedState === 'unscheduled',
+        'border-danger': this.scan.calculatedState === 'failure',
       };
     },
   },

@@ -1,5 +1,10 @@
 <template>
   <div>
+    <div class="row mb-3" v-if="scan.error_reason.length > 0">
+      <div class="col">
+        <small class="text-danger">{{ scan.error_reason }}</small>
+      </div>
+    </div>
     <div class="row">
       <div class="col">
         <small class="text-secondary">{{ $t('home.scan.schedule.start-datetime') }}</small>
