@@ -1,17 +1,22 @@
 <template>
   <div>
-    <div class="d-flex align-items-start flex-row">
-      <div class="py-1">
-        <small class="text-primary">
-          <font-awesome-icon icon="download" class="mr-1"></font-awesome-icon>
-          <a :href="scan['report_url']" target="_blank">{{ $t('home.scan.result.download-results') }}</a>
-        </small>
-      </div>
+    <div class="pb-1 text-dark" v-if="scan.calculatedState === 'unsafe'">
+      <small v-for="result in scan.results" :key="result.id">
+        <span v-if="result.fix_required">
+          <font-awesome-icon icon="exclamation-circle" class="mr-2"></font-awesome-icon>
+          {{ result.name }} ({{result.protocol}}/{{result.port}})<br>
+        </span>
+      </small>
+      <hr class="mb-2">
     </div>
-    <div class="d-flex align-items-start flex-row" v-if="scan.comment">
-      <div class="py-1">
-        <small>{{ scan.comment }}</small>
-      </div>
+    <div class="py-1">
+      <small class="text-primary">
+        <font-awesome-icon icon="download" class="mr-2"></font-awesome-icon>
+        <a :href="scan['report_url']" target="_blank">{{ $t('home.scan.result.download-results') }}</a>
+      </small>
+      <small v-if="scan.comment">
+        <br><font-awesome-icon icon="pencil-alt" class="mr-2"></font-awesome-icon>{{ scan.comment }}
+      </small>
     </div>
     <div class="pt-3">
       <div class="form-row">
@@ -47,10 +52,10 @@ export default {
     ScanPanelScheduler,
   },
   methods: {
-    setComment: async function setComment() {
+    setComment: function setComment() {
       this.$parent.requireComment = true;
     },
-    setReschedule: async function setReschedule() {
+    setReschedule: function setReschedule() {
       this.$parent.requireReschedule = true;
     },
   },

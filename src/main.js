@@ -15,6 +15,7 @@ import faCalendarTimes from '@fortawesome/fontawesome-free-solid/faCalendarTimes
 import faCheck from '@fortawesome/fontawesome-free-solid/faCheck';
 import faCheckCircle from '@fortawesome/fontawesome-free-solid/faCheckCircle';
 import faChevronCircleRight from '@fortawesome/fontawesome-free-solid/faChevronCircleRight';
+import faClipboardCheck from '@fortawesome/fontawesome-free-solid/faClipboardCheck';
 import faClock from '@fortawesome/fontawesome-free-solid/faClock';
 import faDownload from '@fortawesome/fontawesome-free-solid/faDownload';
 import faExclamationCircle from '@fortawesome/fontawesome-free-solid/faExclamationCircle';
@@ -44,8 +45,8 @@ Vue.config.productionTip = false;
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 fontawesome.library.add(
   faArrowLeft, faBan, faBars, faCalendar, faCalendarMinus, faCalendarTimes,
-  faCheck, faCheckCircle, faChevronCircleRight, faClock, faDownload,
-  faExclamationCircle, faFileAlt, faInfoCircle, faPencilAlt,
+  faCheck, faCheckCircle, faChevronCircleRight, faClipboardCheck, faClock,
+  faDownload, faExclamationCircle, faFileAlt, faInfoCircle, faPencilAlt,
   faQuestionCircle, faSpinner, faTimes,
 );
 
