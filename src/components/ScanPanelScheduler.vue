@@ -60,8 +60,8 @@
     </div>
     <div class="row">
       <div class="col text-right">
-        <button class="btn btn-outline-secondary mr-3" @click="cancelReschedule">
-          <font-awesome-icon icon="arrow-left" v-if="this.$parent.reschedule"></font-awesome-icon>
+        <button v-if="this.$parent.reschedule" class="btn btn-outline-secondary mr-3" @click="cancelReschedule">
+          <font-awesome-icon icon="arrow-left"></font-awesome-icon>
           {{ $t('home.scan.schedule.return') }}
         </button>
         <button class="btn btn-primary" @click="setSchedule"><font-awesome-icon icon="clock"></font-awesome-icon> {{ $t('home.scan.schedule.schedule-scan') }}</button>
@@ -74,7 +74,7 @@
 import moment from 'moment';
 
 export default {
-  name: 'ScanPanelUnscheduled',
+  name: 'ScanPanelScheduler',
   props: {
     scan: {
       type: Object,

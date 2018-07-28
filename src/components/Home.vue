@@ -51,11 +51,6 @@ import ScanPanel from './ScanPanel.vue';
 import TargetForm from './TargetForm.vue';
 
 function getScanStatus(scan) {
-  // Debug
-  if (this !== null) {
-    return 'safe';
-  }
-
   if (scan.status.scheduled === true) {
     return 'scheduled';
   } else if (scan.status.scheduled === false && scan.status.processed === false) {

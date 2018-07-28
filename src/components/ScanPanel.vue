@@ -30,9 +30,9 @@
             </p>
           </div>
           <div class="card-body">
-            <scan-panel-unscheduled v-if="scan.calculatedState==='unscheduled'" :scan="scan" :scan-api-client="scanApiClient"></scan-panel-unscheduled>
+            <scan-panel-scheduler v-if="scan.calculatedState==='unscheduled'" :scan="scan" :scan-api-client="scanApiClient"></scan-panel-scheduler>
             <scan-panel-scheduled v-if="scan.calculatedState==='scheduled'" :scan="scan" :scan-api-client="scanApiClient"></scan-panel-scheduled>
-            <scan-panel-unscheduled v-if="scan.calculatedState==='failure'" :scan="scan" :scan-api-client="scanApiClient"></scan-panel-unscheduled>
+            <scan-panel-scheduler v-if="scan.calculatedState==='failure'" :scan="scan" :scan-api-client="scanApiClient"></scan-panel-scheduler>
             <scan-panel-safe v-if="scan.calculatedState==='safe'" :scan="scan" :scan-api-client="scanApiClient"></scan-panel-safe>
           </div>
         </div>
@@ -44,7 +44,7 @@
 <script>
 import ScanPanelSafe from './ScanPanelSafe.vue';
 import ScanPanelScheduled from './ScanPanelScheduled.vue';
-import ScanPanelUnscheduled from './ScanPanelUnscheduled.vue';
+import ScanPanelScheduler from './ScanPanelScheduler.vue';
 
 export default {
   name: 'ScanPanel',
@@ -69,7 +69,7 @@ export default {
   components: {
     ScanPanelSafe,
     ScanPanelScheduled,
-    ScanPanelUnscheduled,
+    ScanPanelScheduler,
   },
   methods: {
     deleteScan: async function deleteScan() {

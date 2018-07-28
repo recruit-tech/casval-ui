@@ -27,12 +27,12 @@
         </div>
       </div>
     </div>
-    <scan-panel-unscheduled v-if="reschedule" :scan="scan" :scan-api-client="scanApiClient"></scan-panel-unscheduled>
+    <scan-panel-scheduler v-if="reschedule" :scan="scan" :scan-api-client="scanApiClient"></scan-panel-scheduler>
   </div>
 </template>
 
 <script>
-import ScanPanelUnscheduled from './ScanPanelUnscheduled.vue';
+import ScanPanelScheduler from './ScanPanelScheduler.vue';
 
 export default {
   name: 'ScanPanelSafe',
@@ -52,7 +52,7 @@ export default {
     };
   },
   components: {
-    ScanPanelUnscheduled,
+    ScanPanelScheduler,
   },
   methods: {
     setReschedule: async function setReschedule() {
