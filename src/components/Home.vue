@@ -51,6 +51,11 @@ import ScanPanel from './ScanPanel.vue';
 import TargetForm from './TargetForm.vue';
 
 function getScanStatus(scan) {
+  // Debug
+  if (this !== null) {
+    return 'safe';
+  }
+
   if (scan.status.scheduled === true) {
     return 'scheduled';
   } else if (scan.status.scheduled === false && scan.status.processed === false) {
@@ -177,20 +182,5 @@ img.logo {
   border-width: 1px 0px 0px 0px;
   border-style: solid;
   border-color: #d7d7d7;
-}
-</style>
-
-<style>
-.pt-2rem {
-  padding-top: 2rem;
-}
-
-.padding-quarter {
-  padding-left: 0.25rem;
-}
-.result-icon {
-  width: 1.5rem !important;
-  min-width: 1.5rem;
-  padding-bottom: 1rem;
 }
 </style>

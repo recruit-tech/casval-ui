@@ -60,6 +60,10 @@
     </div>
     <div class="row">
       <div class="col text-right">
+        <button class="btn btn-outline-secondary mr-3" @click="cancelReschedule">
+          <font-awesome-icon icon="arrow-left" v-if="this.$parent.reschedule"></font-awesome-icon>
+          {{ $t('home.scan.schedule.return') }}
+        </button>
         <button class="btn btn-primary" @click="setSchedule"><font-awesome-icon icon="clock"></font-awesome-icon> {{ $t('home.scan.schedule.schedule-scan') }}</button>
       </div>
     </div>
@@ -92,6 +96,9 @@ export default {
     };
   },
   methods: {
+    cancelReschedule: async function cancelReschedule() {
+      this.$parent.reschedule = false;
+    },
     setSchedule: async function setSchedule() {
       let registerStartDate = this.startDate;
       if (registerStartDate.length === 0) {

@@ -19,7 +19,7 @@
             <p class="card-text text-danger" v-else-if="scan.calculatedState==='failure'">
               <font-awesome-icon icon="calendar-times"></font-awesome-icon> {{ $t('home.scan.status.failure') }}
             </p>
-            <p class="card-text text-success" v-else-if="scan.calculatedState==='safe'">
+            <p class="card-text text-secondary" v-else-if="scan.calculatedState==='safe'">
               <font-awesome-icon icon="check-circle"></font-awesome-icon> {{ $t('home.scan.status.safe') }}
             </p>
             <p class="card-text text-danger" v-else-if="scan.calculatedState==='unsafe'">
@@ -33,6 +33,7 @@
             <scan-panel-unscheduled v-if="scan.calculatedState==='unscheduled'" :scan="scan" :scan-api-client="scanApiClient"></scan-panel-unscheduled>
             <scan-panel-scheduled v-if="scan.calculatedState==='scheduled'" :scan="scan" :scan-api-client="scanApiClient"></scan-panel-scheduled>
             <scan-panel-unscheduled v-if="scan.calculatedState==='failure'" :scan="scan" :scan-api-client="scanApiClient"></scan-panel-unscheduled>
+            <scan-panel-safe v-if="scan.calculatedState==='safe'" :scan="scan" :scan-api-client="scanApiClient"></scan-panel-safe>
           </div>
         </div>
       </div>
@@ -41,8 +42,9 @@
 </template>
 
 <script>
-import ScanPanelUnscheduled from './ScanPanelUnscheduled.vue';
+import ScanPanelSafe from './ScanPanelSafe.vue';
 import ScanPanelScheduled from './ScanPanelScheduled.vue';
+import ScanPanelUnscheduled from './ScanPanelUnscheduled.vue';
 
 export default {
   name: 'ScanPanel',
@@ -65,8 +67,9 @@ export default {
     },
   },
   components: {
-    ScanPanelUnscheduled,
+    ScanPanelSafe,
     ScanPanelScheduled,
+    ScanPanelUnscheduled,
   },
   methods: {
     deleteScan: async function deleteScan() {
@@ -86,3 +89,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.pt-2rem {
+  padding-top: 2rem;
+}
+</style>

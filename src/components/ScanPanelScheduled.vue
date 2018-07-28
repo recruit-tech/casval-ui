@@ -2,10 +2,13 @@
   <div>
     <div class="d-flex align-items-start flex-row">
       <div class="py-1 result-icon">
-        <small class="text-secondary"><font-awesome-icon icon="calendar"></font-awesome-icon></small>
+        <small class="text-secondary"></small>
       </div>
       <div class="py-1">
-        <small class="text-secondary">{{ schedule }}</small>
+        <small class="text-secondary">
+          <font-awesome-icon icon="calendar" class="mr-1"></font-awesome-icon>
+          {{ schedule }}
+        </small>
       </div>
     </div>
     <div class="pt-3">

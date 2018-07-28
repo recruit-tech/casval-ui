@@ -36,7 +36,13 @@
         "error-general": "Failed to set the schedule.",
         "scan-schedule": "Scan the target between {start} - {end}.",
         "cancel": "Cancel",
+        "return": "Back",
         "error-deletion": "Failed to delete the scan."
+      },
+      "result": {
+        "download-results": "Download scan result",
+        "ignore-fix": "Ignore fix",
+        "reschedule-scan": "Reschedule"
       }
     },
     "modal": {

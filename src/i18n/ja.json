@@ -36,7 +36,13 @@
         "error-general": "スケジュールの登録に失敗しました",
         "scan-schedule": "{start} - {end}の間にスキャンします",
         "cancel": "キャンセル",
+        "return": "戻る",
         "error-deletion": "スケジュールの削除に失敗しました"
+      },
+      "result": {
+        "download-results": "検査結果をダウンロード",
+        "ignore-fix": "修正不要と判断",
+        "reschedule-scan": "再検査を予約"
       }
     },
     "modal": {

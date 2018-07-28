@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import fontawesome from '@fortawesome/fontawesome';
+import faArrowLeft from '@fortawesome/fontawesome-free-solid/faArrowLeft';
 import faBan from '@fortawesome/fontawesome-free-solid/faBan';
 import faBars from '@fortawesome/fontawesome-free-solid/faBars';
 import faCalendar from '@fortawesome/fontawesome-free-solid/faCalendar';
@@ -42,7 +43,7 @@ Vue.config.productionTip = false;
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 fontawesome.library.add(
-  faBan, faBars, faCalendar, faCalendarMinus, faCalendarTimes,
+  faArrowLeft, faBan, faBars, faCalendar, faCalendarMinus, faCalendarTimes,
   faCheck, faCheckCircle, faChevronCircleRight, faClock, faDownload,
   faExclamationCircle, faFileAlt, faInfoCircle, faPencilAlt,
   faQuestionCircle, faSpinner, faTimes,
