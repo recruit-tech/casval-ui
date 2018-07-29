@@ -20,7 +20,8 @@
         "failure": "スキャンに失敗しました。再予約してください。",
         "safe": "スキャンが完了しました。",
         "unsafe": "深刻な脆弱性が検出されています。",
-        "loading": "スキャン情報を読み込み中です。"
+        "loading": "スキャン情報を読み込み中です。",
+        "warn-aws": "AWS上のホストをスキャンする際は、事前申請が必要です。"
       },
       "datetime": {
         "date": "YYYY年MM月DD日 (ddd)",
@@ -37,7 +38,9 @@
         "scan-schedule": "{start} - {end}の間にスキャンします",
         "cancel": "キャンセル",
         "return": "戻る",
-        "error-deletion": "スケジュールの削除に失敗しました"
+        "error-deletion": "スケジュールの削除に失敗しました",
+        "aws-warning-message": "AWSの管理者アカウントで以下のページにアクセスし、事前申請が必要です。<br>スキャン元のIPアドレスは <b>{ip}</b> をお伝えください。<br><a href=\"https://aws.amazon.com/jp/security/penetration-testing/\" target=\"_blank\">https://aws.amazon.com/jp/security/penetration-testing/</a>",
+        "aws-warning-ok": "事前申請済み"
       },
       "result": {
         "download-results": "検査結果をダウンロード",

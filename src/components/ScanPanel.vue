@@ -10,7 +10,10 @@
             </span>
           </div>
           <div class="card-header bg-white">
-            <p class="card-text text-primary" v-if="scan.calculatedState==='unscheduled'">
+            <p class="card-text text-warning" v-if="scan.calculatedState==='unscheduled' && warnAws">
+              <font-awesome-icon icon="exclamation-circle"></font-awesome-icon> {{ $t('home.scan.status.warn-aws') }}
+            </p>
+            <p class="card-text text-primary" v-else-if="scan.calculatedState==='unscheduled'">
               {{ $t('home.scan.status.unscheduled') }}
             </p>
             <p class="card-text text-secondary" v-else-if="scan.calculatedState==='scheduled'">
@@ -30,10 +33,16 @@
             </p>
           </div>
           <div class="card-body">
-            <scan-panel-comment v-if="requireComment" :scan="scan" :scan-api-client="scanApiClient"></scan-panel-comment>
-            <scan-panel-scheduled v-else-if="scan.calculatedState==='scheduled'" :scan="scan" :scan-api-client="scanApiClient"></scan-panel-scheduled>
-            <scan-panel-scheduler v-else-if="scan.calculatedState==='unscheduled' || scan.calculatedState==='failure' || requireReschedule" :scan="scan" :scan-api-client="scanApiClient"></scan-panel-scheduler>
-            <scan-panel-result v-else-if="scan.calculatedState==='safe' || scan.calculatedState==='unsafe'" :scan="scan" :scan-api-client="scanApiClient"></scan-panel-result>
+            <scan-panel-comment v-if="requireComment" :scan="scan" :scan-api-client="scanApiClient">
+            </scan-panel-comment>
+            <scan-panel-scheduled v-else-if="scan.calculatedState==='scheduled'" :scan="scan" :scan-api-client="scanApiClient">
+            </scan-panel-scheduled>
+            <scan-panel-warning-aws v-else-if="scan.calculatedState==='unscheduled' && warnAws">
+            </scan-panel-warning-aws>
+            <scan-panel-scheduler v-else-if="scan.calculatedState==='unscheduled' || scan.calculatedState==='failure' || requireReschedule" :scan="scan" :scan-api-client="scanApiClient">
+            </scan-panel-scheduler>
+            <scan-panel-result v-else-if="scan.calculatedState==='safe' || scan.calculatedState==='unsafe'" :scan="scan" :scan-api-client="scanApiClient">
+            </scan-panel-result>
           </div>
         </div>
       </div>
@@ -46,6 +55,7 @@ import ScanPanelComment from './ScanPanelComment.vue';
 import ScanPanelResult from './ScanPanelResult.vue';
 import ScanPanelScheduled from './ScanPanelScheduled.vue';
 import ScanPanelScheduler from './ScanPanelScheduler.vue';
+import ScanPanelWarningAws from './ScanPanelWarningAws.vue';
 
 export default {
   name: 'ScanPanel',
@@ -63,12 +73,17 @@ export default {
     return {
       requireComment: false,
       requireReschedule: false,
+      acceptWarningAws: false,
     };
   },
   computed: {
+    warnAws: function isWarningAws() {
+      return this.scan.platform === 'aws' && !this.acceptWarningAws;
+    },
     cardBorderClass: function cardBorderClass() {
       return {
-        'border-primary': this.scan.calculatedState === 'unscheduled',
+        'border-primary': this.scan.calculatedState === 'unscheduled' && !this.warnAws,
+        'border-warning': this.scan.calculatedState === 'unscheduled' && this.warnAws,
         'border-danger': this.scan.calculatedState === 'failure' || this.scan.calculatedState === 'unsafe',
       };
     },
@@ -78,6 +93,7 @@ export default {
     ScanPanelResult,
     ScanPanelScheduled,
     ScanPanelScheduler,
+    ScanPanelWarningAws,
   },
   methods: {
     deleteScan: async function deleteScan() {

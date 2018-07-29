@@ -20,7 +20,8 @@
         "failure": "Failed to scan the target, schedule a scan again.",
         "safe": "Scan has been completed successfully.",
         "unsafe": "Severe vulnerabilities has been detected. Please respond to the vulnerabilities.",
-        "loading": "Loading scan information."
+        "loading": "Loading scan information.",
+        "warn-aws": "Permission is required when you scan a target on AWS."
       },
       "datetime": {
         "date": "DD/MM/YYYY (ddd)",
@@ -37,7 +38,9 @@
         "scan-schedule": "Scan the target between {start} - {end}.",
         "cancel": "Cancel",
         "return": "Back",
-        "error-deletion": "Failed to delete the scan."
+        "error-deletion": "Failed to delete the scan.",
+        "aws-warning-message": "Visit the following page with the AWS root account and get permission against scanning.<br>Then, tell <b>{ip}</b> as the source IP address of scanning.<br><a href=\"https://aws.amazon.com/security/penetration-testing/\" target=\"_blank\">https://aws.amazon.com/security/penetration-testing/</a>",
+        "aws-warning-ok": "Approved by AWS"
       },
       "result": {
         "download-results": "Download scan result",
