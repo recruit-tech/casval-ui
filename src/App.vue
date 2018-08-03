@@ -48,7 +48,7 @@ export default {
       try {
         const res = await this.auditApiClient.post('/tokens', { password });
         switch (res.status) {
-          case 201:
+          case 200:
             this.token = res.data.token;
             this.getAudit();
             break;

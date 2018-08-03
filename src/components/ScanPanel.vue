@@ -100,7 +100,7 @@ export default {
       try {
         const res = await this.scanApiClient.delete(this.scan.id);
         switch (res.status) {
-          case 204:
+          case 200:
             window.eventBus.$emit('SCAN_DELETED', this.scan.id);
             break;
           default:

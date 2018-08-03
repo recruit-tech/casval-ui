@@ -44,7 +44,7 @@ export default {
       try {
         const res = await this.auditApiClient.delete();
         switch (res.status) {
-          case 204: {
+          case 200: {
             window.location.reload(true);
             break;
           }

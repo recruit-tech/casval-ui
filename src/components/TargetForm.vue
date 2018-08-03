@@ -40,7 +40,7 @@ export default {
       try {
         const res = await this.scanApiClient.post(null, { target: this.target, audit: { id: this.audit.id } });
         switch (res.status) {
-          case 201:
+          case 200:
           case 304:
             this.target = '';
             this.errorMessage = '';
