@@ -4,10 +4,10 @@
       "loaded": "Loaded successfully.",
       "loading": "Now loading...",
       "invalid-token": "Invalid credentials.",
-      "restricted-by-ip": "This audit result is not allowed to access from your IP address.",
-      "restricted-by-password": "This audit result is protected by password.",
-      "not-found": "The audit result you were trying to access doesn't exist or has been removed.",
-      "unknown-error": "Something is technically wrong with the server."
+      "restricted-by-ip": "You are not allowed to access from that IP address.",
+      "restricted-by-password": "This audit result is password protected.",
+      "audit-not-found": "The audit result you specified does not exist or already removed.",
+      "unknown-error": "Unexpected error occurred."
     },
     "password": "Password",
     "open": "Open"
@@ -15,70 +15,66 @@
   "home": {
     "scan": {
       "status": {
-        "unscheduled": "Schedule a scan for the target.",
-        "scheduled": "Wait for completion of scheduled scan.",
-        "failure": "Failed to scan the target, schedule a scan again.",
-        "safe": "Scan has been completed successfully.",
-        "unsafe": "Severe vulnerabilities has been detected. Please respond to the vulnerabilities.",
-        "loading": "Loading scan information.",
-        "warn-aws": "Permission is required when you scan a target on AWS."
+        "unscheduled": "Schedule a scan session for the target.",
+        "scheduled": "Please, wait until scheduled scan invoked.",
+        "failure": "Failed to scan the target, you need to schedule a new scan session for the target.",
+        "completed": "Scan session is complete successfully.",
+        "unsafe": "Critical vulnerabilities has been detected. Please make countermeasures against the vulnerabilities detected.",
+        "loading": "Loading scan information...",
+        "warning-aws": "Permission needs to be requested to have authorization for scanning a target system on AWS."
       },
-      "datetime": {
-        "date": "DD/MM/YYYY (ddd)",
-        "time": "{hour}:00",
-        "date-hour": "DD/MM/YYYY (ddd) HH:00"
-      },
-      "schedule": {
-        "start-datetime": "Start datetime",
-        "date-unspecified": "Unspecified",
-        "time-unspecified": "Time unspecified",
-        "expiration-datetime": "Expiration datetime",
-        "schedule-scan": "Schedule",
-        "error-general": "Failed to set the schedule.",
-        "scan-schedule": "Scan the target between {start} - {end}.",
-        "cancel": "Cancel",
-        "return": "Back",
-        "error-deletion": "Failed to delete the scan.",
-        "aws-warning-message": "Visit the following page with the AWS root account and get permission against scanning.<br>Then, tell <b>{ip}</b> as the source IP address of scanning.<br><a href=\"https://aws.amazon.com/security/penetration-testing/\" target=\"_blank\">https://aws.amazon.com/security/penetration-testing/</a>",
-        "aws-warning-ok": "Approved by AWS"
-      },
+      "date": "DD/MM/YYYY (ddd)",
+      "time": "{hour}:00",
+      "datetime": "DD/MM/YYYY (ddd) HH:00",
+      "start-from": "Scan start from",
+      "date-unspecified": "Unspecified",
+      "time-unspecified": "No schedule time specified",
+      "end-datetime": "Scan end by",
+      "schedule": "Schedule scan session",
+      "error-general": "Failed to schedule the session",
+      "scheduled": "Scan the target between {start} - {end}.",
+      "cancel": "Cancel",
+      "back": "Back",
+      "error-deletion": "Failed to delete the scan session",
+      "warning-aws-message": "Visit the following page with the AWS root account and get permission for scan.<br>And, inform <b>{ip}</b> as the source IP address for scan session.<br><a href=\"https://aws.amazon.com/security/penetration-testing/\" target=\"_blank\">https://aws.amazon.com/security/penetration-testing/</a>",
+      "warning-aws-ok": "Approved by AWS",
       "result": {
-        "download-results": "Download scan result",
-        "ignore-fix": "Ignore fix",
-        "reschedule-scan": "Reschedule",
-        "input-reason": "Write decided reason why you don't need to fix the vulnerabilities (remining {reminingLength} characters).",
-        "reason": "Decided reason",
-        "register-reason": "Register reason"
+        "download": "Download scan result",
+        "ignore": "Decide not to implement correction",
+        "reschedule": "Reschedule scan session",
+        "fill-reason": "Fill in the reason not to implement correction against the vulnerabilities (remining {reminingLength} characters).",
+        "reason": "Reason for risk acceptance",
+        "submit-reason": "Submit the reason"
       }
     },
     "modal": {
-      "change-contact": "Change contacts",
+      "change-contact": "Update contact detail",
       "restrict-access": "Restrict access to this page",
       "revoke-page": "Revoke this page",
       "contact-admin": "Contact system administrators",
       "revocation": {
-        "title": "Revoke this page",
-        "message-1": "You won't be able to access this page again.",
-        "message-2": "Are you sure?",
+        "title": "Revoke the page",
+        "message-1": "You won't be able to access this page once you proceed this.",
+        "message-2": "Are you sure to revoke this page?",
         "ok": "Revoke",
         "cancel": "Cancel",
-        "error": "Failed to revoke the page."
+        "error-general": "Failed to revoke the page."
       },
       "contacts": {
         "title": "Change contacts",
-        "message": "Register name and e-mail address of contact persons.",
+        "message": "Enter names and e-mail addresses of contacts.",
         "name": "Name",
-        "email": "E-mail address",
+        "email": "E-mail",
         "ok": "Register",
         "cancel": "Cancel",
-        "error-no-email": "Specify an e-mail address of {name}.",
-        "error-invalid-email": "{email} is not an valid e-mail address.",
-        "error-no-name": "Name field cannot be empty.",
-        "error-general": "Failed to register new contacts."
+        "error-no-email": "Enter an e-mail address for {name}",
+        "error-invalid-email": "{email} is not a valid e-mail address",
+        "error-no-name": "Name field cannot be empty",
+        "error-general": "Failed to register new contacts"
       },
       "access-restriction": {
-        "title": "Restrict access to this page",
-        "message": "Specify access control to be applied for this page.",
+        "title": "Access restriction",
+        "message": "Configure the access control for this page.",
         "ip-restriction": "IP address restriction",
         "enable": "Enable",
         "disable": "Disable",
@@ -86,8 +82,8 @@
         "password": "Password",
         "ok": "Apply",
         "cancel": "Cancel",
-        "error-invalid-password": "Specify password that length is more than or equals to {minLength} .",
-        "error-general": "Failed to apply access control."
+        "error-invalid-password": "Specify password that length is more than or equals to {minLength}",
+        "error-general": "Failed to apply access control"
       }
     },
     "target-form": {
@@ -96,22 +92,22 @@
       "status": {
         "audit-id-not-found": "Specified audit ID doesn't exist or has been removed.",
         "audit-submitted": "Specified audit has been submitted.",
-        "target-is-private-ip": "Private IP address is not allowed.",
+        "target-is-private-ip": "Private IP address is not allowed to specify.",
         "could-not-resolve-target-fqdn": "Could not resolve specified FQDN.",
         "target-is-not-fqdn-or-ipv4": "Specified scan target is not a FQDN or an IP address.",
         "invalid-token": "Invalid token",
-        "unknown-error": "An unknown error has occurred."
+        "unknown-error": "Unexpected error occurred."
       }
     },
     "audit-status-bar": {
-      "submit-ready": "Severe vulnerabilities could not be found.",
+      "submit-ready": "Any critical vulnerabilities were not be found.",
       "submit-completed": "This audit result has been submitted.",
-      "vulnerability-found": "Severe vulnerabilities has been detected. Fix and scan, or write reason why you don't need to fix.",
-      "submission-failure": "Failed to submit the audit result.",
-      "withdrawal-failure": "Failed to withdraw the audit result.",
+      "critical-vulnerability-found": "Critical vulnerabilities has been detected. You need to request the next scan session after the correction or inform the reason not to fix those vulnerabilities.",
+      "submit-failure": "Failed to submit the audit result.",
+      "withdraw-failure": "Failed to withdraw the audit result.",
       "submit": "Submit the result",
-      "withdrawal": "Withdraw",
-      "withdrawal-confirmation": "Are you sure you want to withdraw the submission of this audit result?"
+      "withdraw": "Withdraw",
+      "withdraw-confirmation": "Are you sure to withdraw the submission of this audit result?"
     }
   }
 }

@@ -7,13 +7,13 @@
     </div>
     <div class="row">
       <div class="col">
-        <small class="text-secondary">{{ $t('home.scan.schedule.start-datetime') }}</small>
+        <small class="text-secondary">{{ $t('home.scan.start-from') }}</small>
       </div>
     </div>
     <div class="row">
       <div class="col">
         <select class="form-control form-control-sm" v-model="startDate">
-          <option value="" selected>{{ $t('home.scan.schedule.date-unspecified') }}</option>
+          <option value="" selected>{{ $t('home.scan.date-unspecified') }}</option>
           <option v-for="(canditate, key) in startDateCandidates" :value="canditate.value" :key="key">
             {{ canditate.name }}
           </option>
@@ -21,7 +21,7 @@
       </div>
       <div class="col" v-if="startDate.length > 0">
         <select class="form-control form-control-sm" v-model="startTime">
-          <option value="" selected>{{ $t('home.scan.schedule.time-unspecified') }}</option>
+          <option value="" selected>{{ $t('home.scan.time-unspecified') }}</option>
           <option v-for="(canditate, key) in startTimeCandidates" :value="canditate.value" :key="key">
             {{ canditate.name }}
           </option>
@@ -31,13 +31,13 @@
     </div>
     <div class="row pt-3">
       <div class="col">
-        <small class="text-secondary">{{ $t('home.scan.schedule.expiration-datetime') }}</small>
+        <small class="text-secondary">{{ $t('home.scan.end-datetime') }}</small>
       </div>
     </div>
     <div class="row">
       <div class="col">
         <select class="form-control form-control-sm" v-model="endDate">
-          <option value="" selected>{{ $t('home.scan.schedule.date-unspecified') }}</option>
+          <option value="" selected>{{ $t('home.scan.date-unspecified') }}</option>
           <option v-for="(canditate, key) in endDateCandidates" :value="canditate.value" :key="key">
             {{ canditate.name }}
           </option>
@@ -45,7 +45,7 @@
       </div>
       <div class="col" v-if="endDate.length > 0">
         <select class="form-control form-control-sm" v-model="endTime">
-          <option value="" selected>{{ $t('home.scan.schedule.time-unspecified') }}</option>
+          <option value="" selected>{{ $t('home.scan.time-unspecified') }}</option>
           <option v-for="(canditate, key) in endTimeCandidates" :value="canditate.value" :key="key">
             {{ canditate.name }}
           </option>
@@ -57,9 +57,9 @@
       <div class="col text-right">
         <button v-if="this.$parent.requireReschedule" class="btn btn-outline-secondary mr-3" @click="cancelReschedule">
           <font-awesome-icon icon="arrow-left"></font-awesome-icon>
-          {{ $t('home.scan.schedule.return') }}
+          {{ $t('home.scan.back') }}
         </button>
-        <button class="btn btn-primary" @click="setSchedule"><font-awesome-icon icon="clock"></font-awesome-icon> {{ $t('home.scan.schedule.schedule-scan') }}</button>
+        <button class="btn btn-primary" @click="setSchedule"><font-awesome-icon icon="clock"></font-awesome-icon> {{ $t('home.scan.schedule') }}</button>
       </div>
     </div>
   </div>
@@ -127,11 +127,11 @@ export default {
             break;
           }
           default: {
-            this.errorMessage = this.$i18n.t('home.scan.schedule.error-general');
+            this.errorMessage = this.$i18n.t('home.scan.error-general');
           }
         }
       } catch (e) {
-        this.errorMessage = this.$i18n.t('home.scan.schedule.error-general');
+        this.errorMessage = this.$i18n.t('home.scan.error-general');
       }
     },
   },
@@ -165,7 +165,7 @@ export default {
     startDateCandidates: function getStartDateCandidates() {
       const candidates = [];
       const m = this.earliestStartDateTime.clone();
-      const format = this.$i18n.t('home.scan.datetime.date');
+      const format = this.$i18n.t('home.scan.date');
       for (let i = 0; i < 14; i += 1) {
         candidates.push({ value: m.format('YYYY-MM-DD'), name: m.format(format) });
         m.add(1, 'day');
@@ -175,7 +175,7 @@ export default {
     endDateCandidates: function getEndDateCandidates() {
       const candidates = [];
       const m = this.earliestEndDateTime.clone();
-      const format = this.$i18n.t('home.scan.datetime.date');
+      const format = this.$i18n.t('home.scan.date');
       for (let i = 0; i < 7; i += 1) {
         candidates.push({ value: m.format('YYYY-MM-DD'), name: m.format(format) });
         m.add(1, 'day');
@@ -192,7 +192,7 @@ export default {
       }
 
       while (hour < 24) {
-        candidates.push({ value: `${hour}:00:00`, name: this.$i18n.t('home.scan.datetime.time', { hour }) });
+        candidates.push({ value: `${hour}:00:00`, name: this.$i18n.t('home.scan.time', { hour }) });
         hour += 1;
       }
       return candidates;
@@ -206,7 +206,7 @@ export default {
         hour = this.earliestEndDateTime.hour();
       }
       while (hour < 24) {
-        candidates.push({ value: `${hour}:00:00`, name: this.$i18n.t('home.scan.datetime.time', { hour }) });
+        candidates.push({ value: `${hour}:00:00`, name: this.$i18n.t('home.scan.time', { hour }) });
         hour += 1;
       }
       return candidates;

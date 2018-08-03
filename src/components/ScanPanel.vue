@@ -10,8 +10,8 @@
             </span>
           </div>
           <div class="card-header bg-white">
-            <p class="card-text text-warning" v-if="scan.calculatedState==='unscheduled' && warnAws">
-              <font-awesome-icon icon="exclamation-circle"></font-awesome-icon> {{ $t('home.scan.status.warn-aws') }}
+            <p class="card-text text-warning" v-if="scan.calculatedState==='unscheduled' && warningAws">
+              <font-awesome-icon icon="exclamation-circle"></font-awesome-icon> {{ $t('home.scan.status.warning-aws') }}
             </p>
             <p class="card-text text-primary" v-else-if="scan.calculatedState==='unscheduled'">
               {{ $t('home.scan.status.unscheduled') }}
@@ -22,8 +22,8 @@
             <p class="card-text text-danger" v-else-if="scan.calculatedState==='failure'">
               <font-awesome-icon icon="calendar-times"></font-awesome-icon> {{ $t('home.scan.status.failure') }}
             </p>
-            <p class="card-text text-secondary" v-else-if="scan.calculatedState==='safe'">
-              <font-awesome-icon icon="check-circle"></font-awesome-icon> {{ $t('home.scan.status.safe') }}
+            <p class="card-text text-secondary" v-else-if="scan.calculatedState==='completed'">
+              <font-awesome-icon icon="check-circle"></font-awesome-icon> {{ $t('home.scan.status.completed') }}
             </p>
             <p class="card-text text-danger" v-else-if="scan.calculatedState==='unsafe'">
               <font-awesome-icon icon="exclamation-circle"></font-awesome-icon> {{ $t('home.scan.status.unsafe') }}
@@ -37,11 +37,11 @@
             </scan-panel-comment>
             <scan-panel-scheduled v-else-if="scan.calculatedState==='scheduled'" :scan="scan" :scan-api-client="scanApiClient">
             </scan-panel-scheduled>
-            <scan-panel-warning-aws v-else-if="scan.calculatedState==='unscheduled' && warnAws">
+            <scan-panel-warning-aws v-else-if="scan.calculatedState==='unscheduled' && warningAws">
             </scan-panel-warning-aws>
             <scan-panel-scheduler v-else-if="scan.calculatedState==='unscheduled' || scan.calculatedState==='failure' || requireReschedule" :scan="scan" :scan-api-client="scanApiClient">
             </scan-panel-scheduler>
-            <scan-panel-result v-else-if="scan.calculatedState==='safe' || scan.calculatedState==='unsafe'" :scan="scan" :scan-api-client="scanApiClient">
+            <scan-panel-result v-else-if="scan.calculatedState==='completed' || scan.calculatedState==='unsafe'" :scan="scan" :scan-api-client="scanApiClient">
             </scan-panel-result>
           </div>
         </div>
@@ -77,13 +77,13 @@ export default {
     };
   },
   computed: {
-    warnAws: function isWarningAws() {
+    warningAws: function isWarningAws() {
       return this.scan.platform === 'aws' && !this.acceptWarningAws;
     },
     cardBorderClass: function cardBorderClass() {
       return {
-        'border-primary': this.scan.calculatedState === 'unscheduled' && !this.warnAws,
-        'border-warning': this.scan.calculatedState === 'unscheduled' && this.warnAws,
+        'border-primary': this.scan.calculatedState === 'unscheduled' && !this.warningAws,
+        'border-warning': this.scan.calculatedState === 'unscheduled' && this.warningAws,
         'border-danger': this.scan.calculatedState === 'failure' || this.scan.calculatedState === 'unsafe',
       };
     },

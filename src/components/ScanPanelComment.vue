@@ -3,7 +3,7 @@
     <div class="d-flex align-items-start flex-row">
       <div class="py-1">
         <small class="text-secondary">
-          {{ $t('home.scan.result.input-reason', { reminingLength: reminingStringLength }) }}<br>
+          {{ $t('home.scan.result.fill-reason', { reminingLength: reminingStringLength }) }}<br>
           <span class="text-danger">{{ errorMessage }}</span>
         </small>
       </div>
@@ -18,10 +18,10 @@
         <div class="col text-right">
           <button v-if="this.$parent.requireComment" class="btn btn-outline-secondary mr-3" @click="cancelComment">
             <font-awesome-icon icon="arrow-left"></font-awesome-icon>
-            {{ $t('home.scan.schedule.return') }}
+            {{ $t('home.scan.back') }}
           </button>
           <button type="button" class="btn btn-primary" @click="registerComment">
-            <font-awesome-icon icon="pencil-alt"></font-awesome-icon> {{ $t('home.scan.result.register-reason') }}
+            <font-awesome-icon icon="pencil-alt"></font-awesome-icon> {{ $t('home.scan.result.submit-reason') }}
           </button>
         </div>
       </div>

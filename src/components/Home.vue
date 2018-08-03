@@ -60,7 +60,7 @@ function getScanStatus(scan) {
       return 'failure';
     }
     if (scan.results.some(result => result.fix_required) || scan.comment.length > 0) {
-      return 'safe';
+      return 'completed';
     }
     return 'unsafe';
   }
@@ -109,7 +109,7 @@ export default {
           if (scan.calculatedState === 'unsafe') {
             return 'fatal';
           }
-          if (scan.calculatedState !== 'safe') {
+          if (scan.calculatedState !== 'completed') {
             return 'ongoing';
           }
         });

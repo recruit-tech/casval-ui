@@ -49,11 +49,11 @@ export default {
             break;
           }
           default: {
-            this.errorMessage = this.$i18n.t('home.modal.revocation.error');
+            this.errorMessage = this.$i18n.t('home.modal.revocation.error-general');
           }
         }
       } catch (e) {
-        this.errorMessage = this.$i18n.t('home.modal.revocation.error');
+        this.errorMessage = this.$i18n.t('home.modal.revocation.error-general');
       }
     },
   },

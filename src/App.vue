@@ -59,7 +59,7 @@ export default {
             this.status = 'restricted-by-ip';
             break;
           case 404:
-            this.status = 'not-found';
+            this.status = 'audit-not-found';
             break;
           default:
             this.status = 'unknown-error';
@@ -82,7 +82,7 @@ export default {
             this.status = 'invalid-token';
             break;
           case 404:
-            this.status = 'not-found';
+            this.status = 'audit-not-found';
             break;
           default:
             this.status = 'unknown-error';

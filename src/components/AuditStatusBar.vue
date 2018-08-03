@@ -16,13 +16,13 @@
           {{ $t('home.audit-status-bar.submit-completed') }}
         </span>
         <button class="btn btn-outline-secondary disabled" @click="cancel">
-          {{ $t('home.audit-status-bar.withdrawal') }}
+          {{ $t('home.audit-status-bar.withdraw') }}
         </button>
       </div>
       <div class="col text-center" v-if="auditStatus === 'fatal'">
         <span class="text-danger">
           <font-awesome-icon icon="check-circle" class="mr-1"></font-awesome-icon>
-          {{ $t('home.audit-status-bar.vulnerability-found') }}
+          {{ $t('home.audit-status-bar.critical-vulnerability-found') }}
         </span>
       </div>
     </div>
@@ -56,15 +56,15 @@ export default {
             this.auditStatus = 'submitted';
             break;
           default:
-            this.errorMessage = this.$i18n.t('home.audit-status-bar.submission-failure');
+            this.errorMessage = this.$i18n.t('home.audit-status-bar.submit-failure');
         }
       } catch (e) {
-        this.errorMessage = this.$i18n.t('home.audit-status-bar.submission-failure');
+        this.errorMessage = this.$i18n.t('home.audit-status-bar.submit-failure');
       }
     },
     cancel: async function cancel() {
       try {
-        if (window.confirm(this.$i18n.t('home.audit-status-bar.withdrawal-confirmation'))) {
+        if (window.confirm(this.$i18n.t('home.audit-status-bar.withdraw-confirmation'))) {
           const res = await this.auditApiClient.delete('/submit');
           switch (res.status) {
             case 200:
@@ -72,11 +72,11 @@ export default {
               this.auditStatus = 'ready';
               break;
             default:
-              this.errorMessage = this.$i18n.t('home.audit-status-bar.withdrawal-failure');
+              this.errorMessage = this.$i18n.t('home.audit-status-bar.withdraw-failure');
           }
         }
       } catch (e) {
-        this.errorMessage = this.$i18n.t('home.audit-status-bar.withdrawal-failure');
+        this.errorMessage = this.$i18n.t('home.audit-status-bar.withdraw-failure');
       }
     },
   },

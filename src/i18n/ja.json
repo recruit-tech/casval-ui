@@ -6,8 +6,8 @@
       "invalid-token": "認証情報が正しくありません",
       "restricted-by-ip": "このIPアドレスからのアクセスは禁止されています",
       "restricted-by-password": "この検査結果はパスワードで保護されています",
-      "not-found": "指定された検査結果は存在しないか、既に削除されています",
-      "unknown-error": "意図しない不具合が発生しました"
+      "audit-not-found": "指定された検査結果は存在しないか、既に削除されています",
+      "unknown-error": "予期しないエラーが発生しました"
     },
     "password": "パスワード",
     "open": "開く"
@@ -15,70 +15,66 @@
   "home": {
     "scan": {
       "status": {
-        "unscheduled": "スキャンを予約してください。",
-        "scheduled": "スキャンが行われるまでお待ちください。",
-        "failure": "スキャンに失敗しました。再予約してください。",
-        "safe": "スキャンが完了しました。",
-        "unsafe": "深刻な脆弱性が検出されています。",
-        "loading": "スキャン情報を読み込み中です。",
-        "warn-aws": "AWS上のホストをスキャンする際は、事前申請が必要です。"
+        "unscheduled": "スキャンを予約してください",
+        "scheduled": "スキャンが実行されるまでお待ちください",
+        "failure": "スキャンに失敗しました。再予約してください",
+        "completed": "スキャンが完了しました",
+        "unsafe": "深刻な脆弱性が検出されました。脆弱性の対策を検討してください",
+        "loading": "スキャン情報を読み込み中です...",
+        "warning-aws": "AWS上にホストがある場合は、スキャンの事前申請が必要です"
       },
-      "datetime": {
-        "date": "YYYY年MM月DD日 (ddd)",
-        "time": "{hour} 時",
-        "date-hour": "YYYY年MM月DD日 (ddd) HH時"
-      },
-      "schedule": {
-        "start-datetime": "開始日時",
-        "date-unspecified": "指定なし",
-        "time-unspecified": "時間指定なし",
-        "expiration-datetime": "終了期限",
-        "schedule-scan": "検査を予約",
-        "error-general": "スケジュールの登録に失敗しました",
-        "scan-schedule": "{start} - {end}の間にスキャンします",
-        "cancel": "キャンセル",
-        "return": "戻る",
-        "error-deletion": "スケジュールの削除に失敗しました",
-        "aws-warning-message": "AWSの管理者アカウントで以下のページにアクセスし、事前申請が必要です。<br>スキャン元のIPアドレスは <b>{ip}</b> をお伝えください。<br><a href=\"https://aws.amazon.com/jp/security/penetration-testing/\" target=\"_blank\">https://aws.amazon.com/jp/security/penetration-testing/</a>",
-        "aws-warning-ok": "事前申請済み"
-      },
+      "date": "YYYY年MM月DD日 (ddd)",
+      "time": "{hour} 時",
+      "datetime": "YYYY年MM月DD日 (ddd) HH時",
+      "start-from": "開始日時",
+      "date-unspecified": "指定なし",
+      "time-unspecified": "時間指定なし",
+      "end-datetime": "終了期限",
+      "schedule": "検査を予約",
+      "error-general": "スケジュールの登録に失敗しました",
+      "scheduled": "{start} - {end}の間にスキャンします",
+      "cancel": "キャンセル",
+      "back": "戻る",
+      "error-deletion": "スケジュールの削除に失敗しました",
+      "warning-aws-message": "AWSの管理者アカウントで以下のページにアクセスし、事前申請を行ってください。<br>スキャン元のIPアドレスには <b>{ip}</b> をお伝えください。<br><a href=\"https://aws.amazon.com/jp/security/penetration-testing/\" target=\"_blank\">https://aws.amazon.com/jp/security/penetration-testing/</a>",
+      "warning-aws-ok": "事前承認済み",
       "result": {
-        "download-results": "検査結果をダウンロード",
-        "ignore-fix": "修正不要と判断",
-        "reschedule-scan": "再検査を予約",
-        "input-reason": "修正不要と判断した理由を入力してください（あと {reminingLength} 文字）",
+        "download": "検査結果をダウンロード",
+        "ignore": "修正不要と判断",
+        "reschedule": "再検査を予約",
+        "fill-reason": "修正不要と判断した理由を入力してください（あと {reminingLength} 文字）",
         "reason": "判断理由",
-        "register-reason": "判断理由を登録"
+        "submit-reason": "判断理由を登録"
       }
     },
     "modal": {
-      "change-contact": "担当者を変更",
+      "change-contact": "担当者情報を変更",
       "restrict-access": "このページへのアクセスを制限",
       "revoke-page": "このページを削除",
-      "contact-admin": "システム管理者に連絡",
+      "contact-admin": "システム管理者に通知",
       "revocation": {
-        "title": "このページを削除",
-        "message-1": "このページには二度とアクセスできなくなります。",
-        "message-2": "それでもよろしいですか？",
+        "title": "ページを削除",
+        "message-1": "一度削除すると、このページにはアクセスできなくなります。",
+        "message-2": "削除してもよろしいですか？",
         "ok": "削除",
         "cancel": "キャンセル",
-        "error": "ページの削除に失敗しました"
+        "error-general": "ページの削除に失敗しました"
       },
       "contacts": {
-        "title": "担当者を変更",
-        "message": "担当者の名前と連絡先を登録してください。",
-        "name": "名前",
+        "title": "担当者情報を登録",
+        "message": "担当者の氏名と連絡先を入力してください。",
+        "name": "氏名",
         "email": "メールアドレス",
-        "ok": "変更",
+        "ok": "登録",
         "cancel": "キャンセル",
         "error-no-email": "{name} さんのメールアドレスを入力してください",
         "error-invalid-email": "{email} は正しいメールアドレスではありません",
-        "error-no-name": "担当者は空にできません",
-        "error-general": "担当者の変更に失敗しました"
+        "error-no-name": "氏名を空欄にできません",
+        "error-general": "担当者の登録に失敗しました"
       },
       "access-restriction": {
-        "title": "このページへのアクセスを制限",
-        "message": "このページに施すアクセス制限を指定してください。",
+        "title": "アクセス制限",
+        "message": "このページで利用するアクセス制限を指定してください。",
         "ip-restriction": "IPアドレス制限",
         "enable": "有効",
         "disable": "無効",
@@ -97,21 +93,21 @@
         "audit-id-not-found": "指定された検査IDは見つかりません",
         "audit-submitted": "指定された検査は既に結果を報告済みです",
         "target-is-private-ip": "プライベートIPアドレスは指定できません",
-        "could-not-resolve-target-fqdn": "指定されたFQDNは名前解決できません",
-        "target-is-not-fqdn-or-ipv4": "FQDNやIPv4アドレスではありません",
+        "could-not-resolve-target-fqdn": "指定されたFQDNは名前解決できませんでした",
+        "target-is-not-fqdn-or-ipv4": "不正なFQDNやIPv4アドレスが指定されています",
         "invalid-token": "トークンが不正です",
-        "unknown-error": "意図しないエラーが発生しました"
+        "unknown-error": "予期しないエラーが発生しました"
       }
     },
     "audit-status-bar": {
-      "submit-ready": "深刻な脆弱性は見つかりませんでした",
-      "submit-completed": "この検査結果は提出を完了しています",
-      "vulnerability-found": "深刻な脆弱性が検出されています。修正して再検査するか、修正しない理由を記述してください",
-      "submission-failure": "検査結果の提出に失敗しました",
-      "withdrawal-failure": "検査結果の取り下げに失敗しました",
+      "submit-ready": "深刻な脆弱性は検出されませんでした",
+      "submit-completed": "この検査結果の提出は完了しています",
+      "critical-vulnerability-found": "深刻な脆弱性が検出されています。改修して再検査するか、改修しない理由を入力してください",
+      "submit-failure": "検査結果の提出に失敗しました",
+      "withdraw-failure": "検査結果の取り下げに失敗しました",
       "submit": "検査結果を提出",
-      "withdrawal": "取り下げる",
-      "withdrawal-confirmation": "本当に提出結果を取り下げますか？"
+      "withdraw": "検査結果を取り下げ",
+      "withdraw-confirmation": "本当に提出結果を取り下げてもよろしいですか？"
     }
   }
 }

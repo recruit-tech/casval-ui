@@ -11,7 +11,7 @@
         <div class="col text-right">
           <button class="
           btn btn-secondary" @click="deleteScanSchedule">
-            {{ $t('home.scan.schedule.cancel') }}
+            {{ $t('home.scan.cancel') }}
           </button>
         </div>
       </div>
@@ -44,11 +44,11 @@ export default {
             break;
           }
           default: {
-            this.errorMessage = this.$i18n.t('home.scan.schedule.error-deletion');
+            this.errorMessage = this.$i18n.t('home.scan.error-deletion');
           }
         }
       } catch (e) {
-        this.errorMessage = this.$i18n.t('home.scan.schedule.error-deletion');
+        this.errorMessage = this.$i18n.t('home.scan.error-deletion');
       }
     },
   },
@@ -57,10 +57,10 @@ export default {
       moment.locale(this.$i18n.locale);
       const utcOffset = moment().utcOffset();
       let start = moment(this.scan.schedule.start_at, 'YYYY-MM-DD hh:mm:ss').add(utcOffset, 'minutes');
-      start = start.format(this.$i18n.t('home.scan.datetime.date-hour'));
+      start = start.format(this.$i18n.t('home.scan.datetime'));
       let end = moment(this.scan.schedule.end_at, 'YYYY-MM-DD hh:mm:ss').add(utcOffset, 'minutes');
-      end = end.format(this.$i18n.t('home.scan.datetime.date-hour'));
-      return this.$i18n.t('home.scan.schedule.scan-schedule', { start, end });
+      end = end.format(this.$i18n.t('home.scan.datetime'));
+      return this.$i18n.t('home.scan.scheduled', { start, end });
     },
   },
 };
