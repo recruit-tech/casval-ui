@@ -166,7 +166,7 @@ export default {
       const candidates = [];
       const m = this.earliestStartDateTime.clone();
       const format = this.$i18n.t('home.scan.date');
-      for (let i = 0; i < 14; i += 1) {
+      for (let i = 0; i < process.env.VUE_APP_SCAN_SCHEDULABLE_DAYS_FROM_NOW; i += 1) {
         candidates.push({ value: m.format('YYYY-MM-DD'), name: m.format(format) });
         m.add(1, 'day');
       }
@@ -176,7 +176,7 @@ export default {
       const candidates = [];
       const m = this.earliestEndDateTime.clone();
       const format = this.$i18n.t('home.scan.date');
-      for (let i = 0; i < 7; i += 1) {
+      for (let i = 0; i < process.env.VUE_APP_SCAN_SCHEDULABLE_DAYS_FROM_START_DATE; i += 1) {
         candidates.push({ value: m.format('YYYY-MM-DD'), name: m.format(format) });
         m.add(1, 'day');
       }
