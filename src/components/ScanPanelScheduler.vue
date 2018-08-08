@@ -117,7 +117,7 @@ export default {
 
       try {
         const res = await this.scanApiClient.patch(`${this.scan.id}/schedule`, {
-          schedule: { start_at: startAt.format('YYYY-MM-DDTHH-mm-ss'), end_at: endAt.format('YYYY-MM-DDTHH-mm-ss') },
+          schedule: { start_at: startAt.format('YYYY-MM-DD HH:mm:ss'), end_at: endAt.format('YYYY-MM-DD HH:mm:ss') },
         });
         switch (res.status) {
           case 200: {
