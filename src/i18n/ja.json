@@ -90,7 +90,7 @@
       "ip-address-or-host-name": "IPアドレスまたはホスト名",
       "register-target": "検査対象を登録",
       "status": {
-        "audit-id-not-found": "指定された検査IDは見つかりません",
+        "audit-not-found": "指定された検査は見つかりません",
         "audit-submitted": "指定された検査は既に結果を報告済みです",
         "target-is-private-ip": "プライベートIPアドレスは指定できません",
         "could-not-resolve-target-fqdn": "指定されたFQDNは名前解決できませんでした",

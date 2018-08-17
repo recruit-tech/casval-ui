@@ -64,8 +64,8 @@ export default {
     return {
       password: '',
       errorMessage: '',
-      isIpRestricted: true,
-      isPasswordRestricted: false,
+      isIpRestricted: this.audit.ip_restriction,
+      isPasswordRestricted: this.audit.password_protection,
     };
   },
   methods: {
@@ -75,10 +75,14 @@ export default {
         return;
       }
       try {
-        const res = await this.auditApiClient.patch(null, {
-          restricted_by: { ip: (this.isIpRestricted === 'true'), password: this.isPasswordRestricted },
-          password: this.password,
-        });
+        const request = {
+          ip_restriction: this.isIpRestricted,
+          password_protection: this.isPasswordRestricted,
+        };
+        if (this.isPasswordRestricted) {
+          request.password = this.password;
+        }
+        const res = await this.auditApiClient.patch(null, request);
         switch (res.status) {
           case 200:
             window.location.reload(true);

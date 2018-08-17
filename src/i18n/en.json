@@ -90,7 +90,7 @@
       "ip-address-or-host-name": "IP address or host name",
       "register-target": "Register scan target",
       "status": {
-        "audit-id-not-found": "Specified audit ID doesn't exist or has been removed.",
+        "audit-not-found": "Specified audit doesn't exist or has been removed.",
         "audit-submitted": "Specified audit has been submitted.",
         "target-is-private-ip": "Private IP address is not allowed to specify.",
         "could-not-resolve-target-fqdn": "Could not resolve specified FQDN.",

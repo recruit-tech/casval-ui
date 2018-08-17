@@ -38,7 +38,7 @@ export default {
   methods: {
     addTarget: async function addTarget() {
       try {
-        const res = await this.scanApiClient.post(null, { target: this.target, audit: { id: this.audit.id } });
+        const res = await this.scanApiClient.post(null, { target: this.target, audit: { uuid: this.audit.uuid } });
         switch (res.status) {
           case 200:
           case 304:

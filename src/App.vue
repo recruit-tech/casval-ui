@@ -15,7 +15,7 @@ export default {
   data() {
     return {
       audit: null,
-      auditId: '',
+      auditUUID: '',
       status: 'loading',
       token: null,
     };
@@ -27,7 +27,7 @@ export default {
   computed: {
     auditApiClient: function createAuditApiClient() {
       return axios.create({
-        baseURL: `${process.env.VUE_APP_AUDIT_API_ENDPOINT}/${this.auditId}`,
+        baseURL: `${process.env.VUE_APP_AUDIT_API_ENDPOINT}/${this.auditUUID}`,
         timeout: process.env.VUE_APP_API_TIMEOUT,
         headers: { Authorization: `Bearer ${this.token}` },
         validateStatus: () => true,
@@ -43,7 +43,7 @@ export default {
     },
   },
   methods: {
-    generateToken: async function generateToken(auditId, password) {
+    generateToken: async function generateToken(password) {
       this.status = 'loading';
       try {
         const res = await this.auditApiClient.post('/tokens', { password });
@@ -93,7 +93,7 @@ export default {
     },
   },
   created: function created() {
-    this.auditId = window.location.hash.substring(2) || '';
+    this.auditUUID = window.location.hash.substring(2) || '';
     window.eventBus.$on('TOKEN_REQUESTED', (password) => {
       this.generateToken(password);
     });
