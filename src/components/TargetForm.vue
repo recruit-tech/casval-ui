@@ -38,18 +38,31 @@ export default {
   methods: {
     addTarget: async function addTarget() {
       try {
-        const res = await this.scanApiClient.post(null, { target: this.target, audit: { uuid: this.audit.uuid } });
+        const res = await this.scanApiClient.post(null, { target: this.target });
         switch (res.status) {
           case 200:
           case 304:
             this.target = '';
             this.errorMessage = '';
-            window.eventBus.$emit('SCAN_REGISTERED', res.data.id);
+            window.eventBus.$emit('SCAN_REGISTERED', res.data.uuid);
             break;
-          case 400:
-            console.log(res);
-            this.errorMessage = this.$i18n.t(`home.target-form.status.${res.data.error_reason}`);
+          case 400: {
+            const message = res.data.Message;
+            if (message.indexOf('target-is-not-fqdn-or-ipv4') >= 0) {
+              this.errorMessage = this.$i18n.t('home.target-form.status.target-is-not-fqdn-or-ipv4');
+            } else if (message.indexOf('audit-submitted') >= 0) {
+              this.errorMessage = this.$i18n.t('home.target-form.status.audit-submitted');
+            } else if (message.indexOf('target-is-private-ip') >= 0) {
+              this.errorMessage = this.$i18n.t('home.target-form.status.target-is-private-ip');
+            } else if (message.indexOf('could-not-resolve-target-fqdn') >= 0) {
+              this.errorMessage = this.$i18n.t('home.target-form.status.could-not-resolve-target-fqdn');
+            } else if (message.indexOf('target-is-empty') >= 0) {
+              this.errorMessage = this.$i18n.t('home.target-form.status.target-is-empty');
+            } else {
+              this.errorMessage = message;
+            }
             break;
+          }
           case 401:
             this.errorMessage = this.$i18n.t('home.target-form.status.invalid-token');
             break;

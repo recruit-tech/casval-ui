@@ -116,14 +116,14 @@ export default {
       const endAt = moment(`${registerEndDate} ${registerEndTime}`, 'YYYY-MM-DD HH-mm-ss').subtract(utcOffset, 'minutes');
 
       try {
-        const res = await this.scanApiClient.patch(`${this.scan.id}/schedule`, {
+        const res = await this.scanApiClient.patch(`${this.scan.uuid}/schedule`, {
           schedule: { start_at: startAt.format('YYYY-MM-DD HH:mm:ss'), end_at: endAt.format('YYYY-MM-DD HH:mm:ss') },
         });
         switch (res.status) {
           case 200: {
             this.errorMessage = '';
             this.$parent.requireReschedule = false;
-            window.eventBus.$emit('SCAN_UPDATED', this.scan.id);
+            window.eventBus.$emit('SCAN_UPDATED', this.scan.uuid);
             break;
           }
           default: {

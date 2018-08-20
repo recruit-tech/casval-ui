@@ -95,6 +95,7 @@
         "target-is-private-ip": "Private IP address is not allowed to specify.",
         "could-not-resolve-target-fqdn": "Could not resolve specified FQDN.",
         "target-is-not-fqdn-or-ipv4": "Specified scan target is not a FQDN or an IP address.",
+        "target-is-empty": "Enter a scan target FQDN or IP address.",
         "invalid-token": "Invalid token",
         "unknown-error": "Unexpected error occurred."
       }

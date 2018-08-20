@@ -32,8 +32,8 @@
       </div>
       <audit-status-bar :audit="audit" :audit-api-client="auditApiClient" :audit-status="auditStatus"></audit-status-bar>
     </div>
-    <div v-for="scanId in scanOrder" :key="scanId">
-      <scan-panel :scan="scans[scanId]" :scan-api-client="scanApiClient"></scan-panel>
+    <div v-for="scanUUID in scanOrder" :key="scanUUID">
+      <scan-panel :scan="scans[scanUUID]" :scan-api-client="scanApiClient"></scan-panel>
     </div>
     <modal-contacts :audit="audit" :audit-api-client="auditApiClient"></modal-contacts>
     <modal-access-restriction :audit="audit" :audit-api-client="auditApiClient"></modal-access-restriction>
@@ -126,37 +126,37 @@ export default {
         console.log(key);
       });
     });
-    window.eventBus.$on('SCAN_REGISTERED', async (scanId) => {
-      this.scanOrder.unshift(scanId);
-      Vue.set(this.scans, scanId, { id: scanId, target: '', calculatedState: 'loading' });
-      window.eventBus.$emit('SCAN_UPDATED', scanId);
+    window.eventBus.$on('SCAN_REGISTERED', async (scanUUID) => {
+      this.scanOrder.unshift(scanUUID);
+      Vue.set(this.scans, scanUUID, { uuid: scanUUID, target: '', calculatedState: 'loading' });
+      window.eventBus.$emit('SCAN_UPDATED', scanUUID);
     });
-    window.eventBus.$on('SCAN_UPDATED', async (scanId) => {
+    window.eventBus.$on('SCAN_UPDATED', async (scanUUID) => {
       try {
-        const res = await this.scanApiClient.get(scanId);
+        const res = await this.scanApiClient.get(scanUUID);
         switch (res.status) {
           case 200: {
             const scan = res.data;
             scan.calculatedState = getScanStatus(scan);
-            Vue.set(this.scans, scanId, scan);
+            Vue.set(this.scans, scanUUID, scan);
             break;
           }
           default: {
-            console.error(`Loading Failure: scanId=${scanId}, status=${res.status}`);
+            console.error(`Loading Failure: scanUUID=${scanUUID}, status=${res.status}`);
             break;
           }
         }
       } catch (e) {
-        console.error(`Loading Failure: scanId=${scanId}, exception=${e.message}`);
+        console.error(`Loading Failure: scanUUID=${scanUUID}, exception=${e.message}`);
       }
     });
-    window.eventBus.$on('SCAN_DELETED', async (scanId) => {
-      const index = this.audit.scans.indexOf(scanId);
+    window.eventBus.$on('SCAN_DELETED', async (scanUUID) => {
+      const index = this.scanOrder.indexOf(scanUUID);
       Vue.delete(this.scanOrder, index);
-      Vue.delete(this.scans, scanId);
+      Vue.delete(this.scans, scanUUID);
     });
-    this.audit.scans.forEach((scanId) => {
-      window.eventBus.$emit('SCAN_REGISTERED', scanId);
+    this.audit.scans.forEach((scanUUID) => {
+      window.eventBus.$emit('SCAN_REGISTERED', scanUUID);
     });
   },
 };

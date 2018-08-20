@@ -37,10 +37,10 @@ export default {
   methods: {
     deleteScanSchedule: async function deleteScanSchedule() {
       try {
-        const res = await this.scanApiClient.delete(`${this.scan.id}/schedule`);
+        const res = await this.scanApiClient.delete(`${this.scan.uuid}/schedule`);
         switch (res.status) {
           case 200: {
-            window.eventBus.$emit('SCAN_UPDATED', this.scan.id);
+            window.eventBus.$emit('SCAN_UPDATED', this.scan.uuid);
             break;
           }
           default: {

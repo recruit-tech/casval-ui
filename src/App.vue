@@ -27,7 +27,7 @@ export default {
   computed: {
     auditApiClient: function createAuditApiClient() {
       return axios.create({
-        baseURL: `${process.env.VUE_APP_AUDIT_API_ENDPOINT}/${this.auditUUID}`,
+        baseURL: `${process.env.VUE_APP_API_ENDPOINT}/audit/${this.auditUUID}`,
         timeout: process.env.VUE_APP_API_TIMEOUT,
         headers: { Authorization: `Bearer ${this.token}` },
         validateStatus: () => true,
@@ -35,7 +35,7 @@ export default {
     },
     scanApiClient: function createScanApiClient() {
       return axios.create({
-        baseURL: process.env.VUE_APP_SCAN_API_ENDPOINT,
+        baseURL: `${process.env.VUE_APP_API_ENDPOINT}/audit/${this.auditUUID}/scan`,
         timeout: process.env.API_REQUEST_TIMEOUT,
         headers: { Authorization: `Bearer ${this.token}` },
         validateStatus: () => true,

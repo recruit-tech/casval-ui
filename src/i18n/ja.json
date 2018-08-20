@@ -95,6 +95,7 @@
         "target-is-private-ip": "プライベートIPアドレスは指定できません",
         "could-not-resolve-target-fqdn": "指定されたFQDNは名前解決できませんでした",
         "target-is-not-fqdn-or-ipv4": "不正なFQDNやIPv4アドレスが指定されています",
+        "target-is-empty": "検査対象のFQDNまたはIPv4アドレスを入力してください",
         "invalid-token": "トークンが不正です",
         "unknown-error": "予期しないエラーが発生しました"
       }

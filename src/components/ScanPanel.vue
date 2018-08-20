@@ -4,7 +4,7 @@
       <div class="col align-items-center">
         <div class="card" :class="cardBorderClass">
           <div class="card-header bg-white">
-            <span><b><a :name="scan.scan_id">{{ scan.target }}</a></b></span>
+            <span><b><a :name="scan.uuid">{{ scan.target }}</a></b></span>
             <span class="float-right">
               <button type="button" class="close" @click="deleteScan"><span>&times;</span></button>
             </span>
@@ -98,16 +98,16 @@ export default {
   methods: {
     deleteScan: async function deleteScan() {
       try {
-        const res = await this.scanApiClient.delete(this.scan.id);
+        const res = await this.scanApiClient.delete(this.scan.uuid);
         switch (res.status) {
           case 200:
-            window.eventBus.$emit('SCAN_DELETED', this.scan.id);
+            window.eventBus.$emit('SCAN_DELETED', this.scan.uuid);
             break;
           default:
-            console.error(`Scan Deletion Failure: scanId=${this.scan.id}, status=${res.status}`);
+            console.error(`Scan Deletion Failure: scanId=${this.scan.uuid}, status=${res.status}`);
         }
       } catch (e) {
-        console.error(`Loading Failure: scanId=${this.scan.id}, exception=${e.message}`);
+        console.error(`Loading Failure: scanId=${this.scan.uuid}, exception=${e.message}`);
       }
     },
   },

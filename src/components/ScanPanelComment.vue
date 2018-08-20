@@ -54,14 +54,14 @@ export default {
     },
     registerComment: async function registerComment() {
       try {
-        const res = await this.scanApiClient.patch(this.scan.id, {
+        const res = await this.scanApiClient.patch(this.scan.uuid, {
           comment: this.comment,
         });
         switch (res.status) {
           case 200: {
             this.errorMessage = '';
             this.$parent.requireComment = false;
-            window.eventBus.$emit('SCAN_UPDATED', this.scan.id);
+            window.eventBus.$emit('SCAN_UPDATED', this.scan.uuid);
             break;
           }
           default: {
