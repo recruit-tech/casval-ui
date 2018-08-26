@@ -35,6 +35,7 @@
     <div v-for="scanUUID in scanOrder" :key="scanUUID">
       <scan-panel :scan="scans[scanUUID]" :scan-api-client="scanApiClient"></scan-panel>
     </div>
+    <div class="pt-3 pb-3"></div>
     <modal-contacts :audit="audit" :audit-api-client="auditApiClient"></modal-contacts>
     <modal-access-restriction :audit="audit" :audit-api-client="auditApiClient"></modal-access-restriction>
     <modal-revocation :audit-api-client="auditApiClient"></modal-revocation>
@@ -103,20 +104,22 @@ export default {
       if (this.audit.submitted) {
         return 'submitted';
       }
-      if (this.scans.length > 0) {
-        // eslint-disable-next-line consistent-return
-        this.scans.forEach((scan) => {
-          if (scan.calculatedState === 'unsafe') {
-            return 'fatal';
-          }
-          if (scan.calculatedState !== 'completed') {
-            return 'ongoing';
-          }
-        });
-      } else {
+      if (Object.keys(this.scans).length === 0) {
         return 'ongoing';
       }
-      return 'submit-ready';
+      // eslint-disable-next-line consistent-return
+      let status = 'submit-ready';
+      Object.keys(this.scans).some((scanUUID) => {
+        const state = this.scans[scanUUID].calculatedState;
+        if (state === 'unsafe') {
+          status = 'fatal';
+          return true;
+        } else if (state !== 'completed') {
+          status = 'ongoing';
+          return true;
+        }
+      });
+      return status;
     },
   },
   created: function created() {
