@@ -20,13 +20,13 @@
               {{ $t('home.scan.status.scheduled') }}
             </p>
             <p class="card-text text-danger" v-else-if="scan.calculatedState==='failure'">
-              <font-awesome-icon icon="calendar-times"></font-awesome-icon> {{ $t('home.scan.status.failure') }}
+              {{ $t('home.scan.status.failure') }}
             </p>
             <p class="card-text text-secondary" v-else-if="scan.calculatedState==='completed'">
-              <font-awesome-icon icon="check-circle"></font-awesome-icon> {{ $t('home.scan.status.completed') }}
+              {{ $t('home.scan.status.completed') }}
             </p>
             <p class="card-text text-danger" v-else-if="scan.calculatedState==='unsafe'">
-              <font-awesome-icon icon="exclamation-circle"></font-awesome-icon> {{ $t('home.scan.status.unsafe') }}
+              {{ $t('home.scan.status.unsafe') }}
             </p>
             <p class="card-text text-secondary" v-else>
               <font-awesome-icon icon="spinner" pulse></font-awesome-icon> {{ $t('home.scan.status.loading') }}

@@ -1,21 +1,14 @@
 <template>
   <div>
-    <div class="pb-1 text-dark" v-if="scan.calculatedState === 'unsafe'">
-      <small v-for="result in scan.results" :key="result.id">
-        <span v-if="result.fix_required">
-          <font-awesome-icon icon="exclamation-circle" class="mr-2"></font-awesome-icon>
-          {{ result.name }} ({{result.protocol}}/{{result.port}})<br>
-        </span>
+    <div>
+      <small class="text-secondary" v-for="result in scan.results" :key="result.id">
+        <a :href="scan['report_url']">
+          <font-awesome-icon icon="exclamation-circle" class="mr-2"></font-awesome-icon>{{ result.name }} - {{result.port}}
+        </a><br>
       </small>
-      <hr class="mb-2">
-    </div>
-    <div class="py-1">
-      <small class="text-primary">
-        <font-awesome-icon icon="download" class="mr-2"></font-awesome-icon>
-        <a :href="scan['report_url']" target="_blank">{{ $t('home.scan.result.download') }}</a>
-      </small>
-      <small v-if="scan.comment">
-        <br><font-awesome-icon icon="pencil-alt" class="mr-2"></font-awesome-icon>{{ scan.comment }}
+      <small v-if="scan.comment" class="text-secondary">
+        <hr class="mb-3">
+        <font-awesome-icon icon="pencil-alt" class="mr-2"></font-awesome-icon>{{ scan.comment }}
       </small>
     </div>
     <div class="pt-3">

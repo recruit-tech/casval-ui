@@ -63,7 +63,7 @@ function getScanStatus(scan) {
     if (scan.results.length === 0) {
       return 'completed';
     }
-    if (scan.results.some(result => result.fix_required) || scan.comment.length > 0) {
+    if (scan.results.some(result => result.fix_required) && scan.comment.length > 0) {
       return 'completed';
     }
     return 'unsafe';

@@ -69,7 +69,7 @@ export default {
           switch (res.status) {
             case 200:
               this.errorMessage = '';
-              this.auditStatus = 'ready';
+              this.auditStatus = 'submit-ready';
               break;
             default:
               this.errorMessage = this.$i18n.t('home.audit-status-bar.withdraw-failure');

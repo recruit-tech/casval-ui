@@ -45,7 +45,7 @@ export default {
   data() {
     return {
       errorMessage: '',
-      comment: '',
+      comment: this.scan.comment,
     };
   },
   methods: {

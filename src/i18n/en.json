@@ -19,7 +19,7 @@
         "scheduled": "Please, wait until scheduled scan invoked.",
         "failure": "Failed to scan the target, you need to schedule a new scan session for the target.",
         "completed": "Scan session is complete successfully.",
-        "unsafe": "Critical vulnerabilities has been detected. Please make countermeasures against the vulnerabilities detected.",
+        "unsafe": "Critical vulnerabilities has been detected. Please make countermeasures.",
         "loading": "Loading scan information...",
         "warning-aws": "Permission needs to be requested to have authorization for scanning a target system on AWS."
       },
@@ -108,7 +108,7 @@
       "withdraw-failure": "Failed to withdraw the audit result.",
       "submit": "Submit the result",
       "withdraw": "Withdraw",
-      "withdraw-confirmation": "Are you sure to withdraw the submission of this audit result?"
+      "withdraw-confirmation": "Are you sure to withdraw the submission?"
     }
   }
 }
