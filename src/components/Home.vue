@@ -60,6 +60,9 @@ function getScanStatus(scan) {
     if (scan.error_reason.length > 0) {
       return 'failure';
     }
+    if (scan.results.length === 0) {
+      return 'completed';
+    }
     if (scan.results.some(result => result.fix_required) || scan.comment.length > 0) {
       return 'completed';
     }
@@ -118,6 +121,7 @@ export default {
           status = 'ongoing';
           return true;
         }
+        return false;
       });
       return status;
     },
