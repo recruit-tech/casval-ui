@@ -104,12 +104,12 @@
       }
     },
     "audit-status-bar": {
-      "submit-ready": "深刻な脆弱性は検出されませんでした",
-      "submit-completed": "この検査結果の提出は完了しています",
-      "critical-vulnerability-found": "深刻な脆弱性が検出されています。改修して再検査するか、改修しない理由を入力してください",
+      "submit-ready": "深刻な脆弱性は検出されませんでした。",
+      "submit-completed": "この検査結果の提出は完了しています。",
+      "critical-vulnerability-found": "深刻な脆弱性が検出されています。改修して再検査するか、改修しない理由を入力してください。",
       "submit-failure": "検査結果の提出に失敗しました",
       "withdraw-failure": "検査結果の取り下げに失敗しました",
-      "submit": "検査結果を提出",
+      "submit": "この検査結果を提出",
       "withdraw": "検査結果を取り下げ",
       "withdraw-confirmation": "本当に取り下げてもよろしいですか？"
     }

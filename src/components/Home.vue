@@ -33,15 +33,15 @@
           </div>
         </div>
       </div>
-      <audit-status-bar :audit="audit" :audit-api-client="auditApiClient" :audit-status="auditStatus"></audit-status-bar>
     </div>
     <div v-for="scanUUID in scanOrder" :key="scanUUID">
       <scan-panel :scan="scans[scanUUID]" :scan-api-client="scanApiClient"></scan-panel>
     </div>
-    <div class="pt-3 pb-3"></div>
+    <div class="pt-5 pb-5"></div>
     <modal-contacts :audit="audit" :audit-api-client="auditApiClient"></modal-contacts>
     <modal-access-restriction :audit="audit" :audit-api-client="auditApiClient"></modal-access-restriction>
     <modal-revocation :audit-api-client="auditApiClient"></modal-revocation>
+    <audit-status-bar :audit="audit" :audit-api-client="auditApiClient" :audit-status="auditStatus"></audit-status-bar>
   </div>
 </template>
 
@@ -217,12 +217,6 @@ img.logo {
 #header {
   background-color: #ffffff;
   border-width: 0px 0px 1px 0px;
-  border-style: solid;
-  border-color: #d7d7d7;
-}
-#result {
-  background-color: #ffffff;
-  border-width: 1px 0px 0px 0px;
   border-style: solid;
   border-color: #d7d7d7;
 }

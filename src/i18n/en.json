@@ -104,7 +104,7 @@
       }
     },
     "audit-status-bar": {
-      "submit-ready": "Any critical vulnerabilities were not be found",
+      "submit-ready": "Any critical vulnerabilities were not be found.",
       "submit-completed": "This audit result has been submitted.",
       "critical-vulnerability-found": "Critical vulnerabilities has been detected. You need to request the next scan session after the correction or inform the reason not to fix those vulnerabilities.",
       "submit-failure": "Failed to submit the audit result.",
