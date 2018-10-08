@@ -1,6 +1,9 @@
 <template>
   <div>
     <div>
+      <small class="text-secondary" v-if="scan.results.length === 0">
+        <font-awesome-icon icon="check-circle" class="mr-2"></font-awesome-icon>{{ $t('home.scan.result.no-critical-issues') }}
+      </small>
       <small class="text-secondary" v-for="result in scan.results" :key="result.id">
         <a :href="scan['report_url']">
           <font-awesome-icon icon="exclamation-circle" class="mr-2"></font-awesome-icon>{{ result.name }} - {{result.port}}

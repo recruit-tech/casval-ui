@@ -39,6 +39,7 @@
       "warning-aws-message": "AWSの管理者アカウントで以下のページにアクセスし、事前申請を行ってください。<br>スキャン元のIPアドレスには <b>{ip}</b> をお伝えください。<br><a href=\"https://aws.amazon.com/jp/security/penetration-testing/\" target=\"_blank\">https://aws.amazon.com/jp/security/penetration-testing/</a>",
       "warning-aws-ok": "事前承認済み",
       "result": {
+        "no-critical-issues": "深刻な脆弱性は見つかりませんでした",
         "download": "検査結果をダウンロード",
         "ignore": "修正不要と判断",
         "reschedule": "再検査を予約",
@@ -48,6 +49,8 @@
       }
     },
     "modal": {
+      "download-audit": "検査結果をダウンロード",
+      "error-download": "検査結果のダウンロードに失敗しました",
       "change-contact": "担当者情報を変更",
       "restrict-access": "このページへのアクセスを制限",
       "revoke-page": "このページを削除",
@@ -73,7 +76,7 @@
         "error-general": "担当者の登録に失敗しました"
       },
       "access-restriction": {
-        "title": "アクセス制限",
+        "title": "アクセスを制限",
         "message": "このページで利用するアクセス制限を指定してください。",
         "ip-restriction": "IPアドレス制限",
         "enable": "有効",
@@ -87,8 +90,8 @@
       }
     },
     "target-form": {
-      "ip-address-or-host-name": "IPアドレスまたはホスト名",
-      "register-target": "検査対象を登録",
+      "ip-address-or-host-name": "検査対象のIPアドレスまたはホスト名",
+      "register-target": "検査を登録",
       "status": {
         "audit-not-found": "指定された検査は見つかりません",
         "audit-submitted": "指定された検査は既に結果を報告済みです",

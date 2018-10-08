@@ -12,6 +12,9 @@
                 <font-awesome-icon icon="bars"></font-awesome-icon>
               </button>
               <div class="dropdown-menu dropdown-menu-right">
+                <button class="dropdown-item" type="button" @click="downloadAudit" v-if="auditDownloadable">
+                  {{ $t('home.modal.download-audit') }}
+                </button>
                 <a href="#" class="dropdown-item" data-toggle="modal" data-target="#modal-contacts">{{ $t('home.modal.change-contact') }}</a>
                 <a href="#" class="dropdown-item" data-toggle="modal" data-target="#modal-restriction">{{ $t('home.modal.restrict-access') }}</a>
                 <a href="#" class="dropdown-item" data-toggle="modal" data-target="#modal-revocation">{{ $t('home.modal.revoke-page') }}</a>
@@ -94,6 +97,36 @@ export default {
       scanOrder: [],
     };
   },
+  methods: {
+    downloadAudit: async function downloadAudit() {
+      try {
+        const res = await this.auditApiClient.get('/download');
+        switch (res.status) {
+          case 200: {
+            const csv = res.data;
+            const mime = 'text/csv';
+            const filename = `casval-audit-result-${this.audit.uuid}.csv`;
+            const blob = new Blob([csv], { type: mime });
+            if (window.navigator.msSaveBlob) {
+              window.navigator.msSaveBlob(blob, filename); // IE
+            } else if (window.URL && window.URL.createObjectURL) {
+              const a = document.createElement('a');
+              a.href = window.URL.createObjectURL(blob);
+              a.download = filename;
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+            }
+            break;
+          }
+          default:
+            alert(this.$i18n.t('home.modal.error-download'));
+        }
+      } catch (e) {
+        alert(this.$i18n.t('home.modal.error-download'));
+      }
+    },
+  },
   components: {
     AuditStatusBar,
     ModalAccessRestriction,
@@ -103,6 +136,14 @@ export default {
     TargetForm,
   },
   computed: {
+    auditDownloadable: function auditDownloadable() {
+      return Object.keys(this.scans).some((scanUUID) => {
+        if (this.scans[scanUUID].status && this.scans[scanUUID].status.processed) {
+          return true;
+        }
+        return false;
+      });
+    },
     auditStatus: function auditStatus() {
       if (this.audit.submitted) {
         return 'submitted';

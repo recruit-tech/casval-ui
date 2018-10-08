@@ -39,6 +39,7 @@
       "warning-aws-message": "Visit the following page with the AWS root account and get permission for scan.<br>And, inform <b>{ip}</b> as the source IP address for scan session.<br><a href=\"https://aws.amazon.com/security/penetration-testing/\" target=\"_blank\">https://aws.amazon.com/security/penetration-testing/</a>",
       "warning-aws-ok": "Approved by AWS",
       "result": {
+        "no-critical-issues": "No critical issues",
         "download": "Download scan result",
         "ignore": "Decide not to implement correction",
         "reschedule": "Reschedule scan session",
@@ -48,6 +49,8 @@
       }
     },
     "modal": {
+      "download-audit": "Download audit result",
+      "error-download": "Failed to download the audit result",
       "change-contact": "Update contact detail",
       "restrict-access": "Restrict access to this page",
       "revoke-page": "Revoke this page",
@@ -87,7 +90,7 @@
       }
     },
     "target-form": {
-      "ip-address-or-host-name": "IP address or host name",
+      "ip-address-or-host-name": "IP address or host name to audit",
       "register-target": "Register scan target",
       "status": {
         "audit-not-found": "Specified audit doesn't exist or has been removed.",
@@ -101,7 +104,7 @@
       }
     },
     "audit-status-bar": {
-      "submit-ready": "Any critical vulnerabilities were not be found.",
+      "submit-ready": "Any critical vulnerabilities were not be found",
       "submit-completed": "This audit result has been submitted.",
       "critical-vulnerability-found": "Critical vulnerabilities has been detected. You need to request the next scan session after the correction or inform the reason not to fix those vulnerabilities.",
       "submit-failure": "Failed to submit the audit result.",
