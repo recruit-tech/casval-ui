@@ -104,12 +104,12 @@
       }
     },
     "audit-status-bar": {
-      "submit-ready": "Any critical vulnerabilities were not be found.",
+      "submit-ready": "Push the submit button, if you want to finish this audit session.",
       "submit-completed": "This audit result has been submitted.",
       "critical-vulnerability-found": "Critical vulnerabilities has been detected. You need to request the next scan session after the correction or inform the reason not to fix those vulnerabilities.",
       "submit-failure": "Failed to submit the audit result.",
       "withdraw-failure": "Failed to withdraw the audit result.",
-      "submit": "Submit the result",
+      "submit": "Submit",
       "withdraw": "Withdraw",
       "withdraw-confirmation": "Are you sure to withdraw the submission?"
     }

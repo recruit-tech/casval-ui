@@ -2,24 +2,24 @@
   <div class="container-fluid fixed-bottom pb-5" v-if="auditStatus !== 'ongoing'">
     <div class="row">
       <div class="col"></div>
-      <div class="col10 text-center border border-primary shadow p-3 bg-white rounded" v-if="auditStatus === 'submit-ready'">
-        <span class="text-primary pr-2">{{ $t('home.audit-status-bar.submit-ready') }}</span>
+      <div class="col10 text-center border border-primary shadow-sm p-3 bg-white rounded" v-if="auditStatus === 'submit-ready'">
+        <span class="text-primary pr-2">
+          {{ $t('home.audit-status-bar.submit-ready') }}
+        </span>
         <button class="btn btn-primary" @click="submit">
-          <font-awesome-icon icon="chevron-circle-right"></font-awesome-icon>
+          <font-awesome-icon icon="check-circle" class="mr-1"></font-awesome-icon>
           {{ $t('home.audit-status-bar.submit') }}
         </button>
       </div>
-      <div class="col10 text-center border border-sedoncary shadow p-3 bg-white rounded" v-if="auditStatus === 'submitted'">
+      <div class="col10 text-center border border-sedoncary shadow-sm p-3 bg-white rounded" v-if="auditStatus === 'submitted'">
         <span class="text-secondary pr-2">{{ $t('home.audit-status-bar.submit-completed') }}</span>
         <button class="btn btn-secondary disabled" @click="cancel">
-          <font-awesome-icon icon="chevron-circle-right"></font-awesome-icon>
           {{ $t('home.audit-status-bar.withdraw') }}
         </button>
       </div>
-      <div class="col10 text-center border border-danger shadow p-3 bg-white rounded" v-if="auditStatus === 'fatal'">
+      <div class="col10 text-center border border-danger shadow-sm p-3 bg-white rounded" v-if="auditStatus === 'fatal'">
         <span class="text-danger">
-          <font-awesome-icon icon="check-circle" class="mr-1"></font-awesome-icon>
-          {{ $t('home.audit-status-bar.critical-vulnerability-found') }}
+          <font-awesome-icon icon="check-circle" class="mr-1"></font-awesome-icon>{{ $t('home.audit-status-bar.critical-vulnerability-found') }}
         </span>
       </div>
       <div class="col"></div>
