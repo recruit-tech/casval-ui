@@ -13,7 +13,7 @@
     <div class="row">
       <div class="col">
         <select class="form-control form-control-sm" v-model="startDate">
-          <option value="" selected>{{ $t('home.scan.date-unspecified') }}</option>
+          <option value="" selected>{{ $t('home.scan.now') }}</option>
           <option v-for="(canditate, key) in startDateCandidates" :value="canditate.value" :key="key">
             {{ canditate.name }}
           </option>
@@ -59,7 +59,9 @@
           <font-awesome-icon icon="arrow-left"></font-awesome-icon>
           {{ $t('home.scan.back') }}
         </button>
-        <button class="btn btn-primary" @click="setSchedule"><font-awesome-icon icon="clock"></font-awesome-icon> {{ $t('home.scan.schedule') }}</button>
+        <button class="btn btn-primary" @click="setSchedule">
+          <font-awesome-icon icon="clock"></font-awesome-icon> {{ $t('home.scan.schedule') }}
+        </button>
       </div>
     </div>
   </div>
@@ -73,12 +75,12 @@ export default {
   props: {
     scan: {
       type: Object,
-      required: true,
+      required: true
     },
     scanApiClient: {
       type: Function,
-      required: true,
-    },
+      required: true
+    }
   },
   data() {
     return {
@@ -87,7 +89,7 @@ export default {
       startDate: '',
       startTime: '',
       endDate: '',
-      endTime: '',
+      endTime: ''
     };
   },
   methods: {
@@ -112,12 +114,19 @@ export default {
         registerEndTime = this.endTimeCandidates[this.endTimeCandidates.length - 1].value;
       }
       const utcOffset = moment().utcOffset();
-      const startAt = moment(`${registerStartDate} ${registerStartTime}`, 'YYYY-MM-DD HH-mm-ss').subtract(utcOffset, 'minutes');
-      const endAt = moment(`${registerEndDate} ${registerEndTime}`, 'YYYY-MM-DD HH-mm-ss').subtract(utcOffset, 'minutes');
+      const startAt = moment(`${registerStartDate} ${registerStartTime}`, 'YYYY-MM-DD HH-mm-ss').subtract(
+        utcOffset,
+        'minutes'
+      );
+      const endAt = moment(`${registerEndDate} ${registerEndTime}`, 'YYYY-MM-DD HH-mm-ss').subtract(
+        utcOffset,
+        'minutes'
+      );
 
       try {
-        const res = await this.scanApiClient.patch(`${this.scan.uuid}/schedule`, {
-          schedule: { start_at: startAt.format('YYYY-MM-DD HH:mm:ss'), end_at: endAt.format('YYYY-MM-DD HH:mm:ss') },
+        const res = await this.scanApiClient.patch(`${this.scan.uuid}/schedule/`, {
+          start_at: startAt.format('YYYY-MM-DDTHH:mm:ss'),
+          end_at: endAt.format('YYYY-MM-DDTHH:mm:ss')
         });
         switch (res.status) {
           case 200: {
@@ -133,18 +142,21 @@ export default {
       } catch (e) {
         this.errorMessage = this.$i18n.t('home.scan.error-general');
       }
-    },
+    }
   },
   computed: {
     earliestStartDateTime: function getEarliestStartDateTime() {
       // The estimated earliest start date time is used when start date is not specified by user
-      return this.currentTime.clone().add(65, 'minutes').minutes(0).seconds(0);
+      return this.currentTime
+        .clone()
+        .minutes(0)
+        .seconds(0);
     },
     earliestEndDateTime: function getEarliestEndDateTime() {
       if (this.startDate === '') {
         // If start date is not specified by user,
-        // then the estimated end date is after 2 hours from the earliest start time
-        return this.earliestStartDateTime.clone().add(2, 'hours');
+        // then the estimated end date is after 3 hours from the earliest start time
+        return this.earliestStartDateTime.clone().add(3, 'hours');
       }
 
       let estimatedStartTime = this.startTime;
@@ -159,8 +171,8 @@ export default {
           estimatedStartTime = '00:00:00';
         }
       }
-      // The ealiest end date time is after 2 hours from the specified start date time.
-      return moment(`${this.startDate} ${estimatedStartTime}`, 'YYYY-MM-DD HH-mm-ss').add(2, 'hours');
+      // The ealiest end date time is after 3 hours from the specified start date time.
+      return moment(`${this.startDate} ${estimatedStartTime}`, 'YYYY-MM-DD HH-mm-ss').add(3, 'hours');
     },
     startDateCandidates: function getStartDateCandidates() {
       const candidates = [];
@@ -210,12 +222,14 @@ export default {
         hour += 1;
       }
       return candidates;
-    },
+    }
   },
   created: function created() {
     moment.locale(this.$i18n.locale);
     this.currentTime = moment();
-    setInterval(() => { this.currentTime = moment(); }, 1000 * 30); // Update every 30 seconds.
-  },
+    setInterval(() => {
+      this.currentTime = moment();
+    }, 1000 * 30); // Update every 30 seconds.
+  }
 };
 </script>

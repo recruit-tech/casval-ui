@@ -29,21 +29,30 @@ const i18n = new VueI18n({
   fallbackLocale: 'en',
   messages: {
     en,
-    ja,
-  },
+    ja
+  }
 });
 
 Vue.config.productionTip = false;
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 fontawesome.library.add(
-  faArrowLeft, faBars, faCalendar, faCalendarTimes, faCheckCircle, faChevronCircleRight,
-  faClock, faDownload, faExclamationCircle, faPencilAlt, faSpinner,
+  faArrowLeft,
+  faBars,
+  faCalendar,
+  faCalendarTimes,
+  faCheckCircle,
+  faChevronCircleRight,
+  faClock,
+  faDownload,
+  faExclamationCircle,
+  faPencilAlt,
+  faSpinner
 );
 
 window.eventBus = new Vue();
 
 new Vue({
   i18n,
-  render: h => h(App),
+  render: h => h(App)
 }).$mount('#app');

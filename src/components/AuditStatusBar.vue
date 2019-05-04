@@ -2,24 +2,42 @@
   <div class="container-fluid fixed-bottom pb-5" v-if="auditStatus !== 'ongoing'">
     <div class="row">
       <div class="col"></div>
-      <div class="col10 text-center border border-primary shadow-sm p-3 bg-white rounded" v-if="auditStatus === 'submit-ready'">
-        <span class="text-primary pr-2">
-          {{ $t('home.audit-status-bar.submit-ready') }}
-        </span>
-        <button class="btn btn-primary" @click="submit">
+
+      <div
+        class="col10 text-center border border-success shadow-sm p-3 bg-white rounded"
+        v-if="auditStatus === 'approved'"
+      >
+        <b class="text-success pr-2">
           <font-awesome-icon icon="check-circle" class="mr-1"></font-awesome-icon>
-          {{ $t('home.audit-status-bar.submit') }}
+          {{ $t('home.audit-status-bar.submit-approved') }}
+        </b>
+      </div>
+
+      <div
+        class="col10 text-center border border-primary shadow-sm p-3 bg-white rounded"
+        v-if="auditStatus === 'submit-ready'"
+      >
+        <b class="text-primary pr-2">
+          <font-awesome-icon icon="exclamation-circle" class="mr-1"></font-awesome-icon>
+          {{ $t('home.audit-status-bar.submit-ready') }}
+        </b>
+        <button class="btn btn-primary" @click="submit">
+          <b>{{ $t('home.audit-status-bar.submit') }}</b>
         </button>
       </div>
-      <div class="col10 text-center border border-sedoncary shadow-sm p-3 bg-white rounded" v-if="auditStatus === 'submitted'">
-        <span class="text-secondary pr-2">{{ $t('home.audit-status-bar.submit-completed') }}</span>
+      <div
+        class="col10 text-center border border-sedoncary shadow-sm p-3 bg-white rounded"
+        v-if="auditStatus === 'submitted'"
+      >
+        <b class="text-secondary pr-2">{{ $t('home.audit-status-bar.submit-completed') }}</b>
         <button class="btn btn-secondary disabled" @click="cancel">
-          {{ $t('home.audit-status-bar.withdraw') }}
+          <b>{{ $t('home.audit-status-bar.withdraw') }}</b>
         </button>
       </div>
       <div class="col10 text-center border border-danger shadow-sm p-3 bg-white rounded" v-if="auditStatus === 'fatal'">
         <span class="text-danger">
-          <font-awesome-icon icon="check-circle" class="mr-1"></font-awesome-icon>{{ $t('home.audit-status-bar.critical-vulnerability-found') }}
+          <font-awesome-icon icon="exclamation-circle" class="mr-1"></font-awesome-icon
+          >{{ $t('home.audit-status-bar.critical-vulnerability-found') }}
         </span>
       </div>
       <div class="col"></div>
@@ -33,25 +51,25 @@ export default {
   props: {
     audit: {
       type: Object,
-      required: true,
+      required: true
     },
     auditApiClient: {
       type: Function,
-      required: true,
+      required: true
     },
     auditStatus: {
       type: String,
-      required: true,
-    },
+      required: true
+    }
   },
   methods: {
     submit: async function submit() {
       try {
-        const res = await this.auditApiClient.post('/submit');
+        const res = await this.auditApiClient.post('/submit/');
         switch (res.status) {
           case 200:
             this.errorMessage = '';
-            this.auditStatus = 'submitted';
+            window.eventBus.$emit('RELOAD_REQUESTED');
             break;
           default:
             this.errorMessage = this.$i18n.t('home.audit-status-bar.submit-failure');
@@ -63,11 +81,11 @@ export default {
     cancel: async function cancel() {
       try {
         if (window.confirm(this.$i18n.t('home.audit-status-bar.withdraw-confirmation'))) {
-          const res = await this.auditApiClient.delete('/submit');
+          const res = await this.auditApiClient.delete('/submit/');
           switch (res.status) {
             case 200:
               this.errorMessage = '';
-              this.auditStatus = 'submit-ready';
+              window.eventBus.$emit('RELOAD_REQUESTED');
               break;
             default:
               this.errorMessage = this.$i18n.t('home.audit-status-bar.withdraw-failure');
@@ -76,7 +94,7 @@ export default {
       } catch (e) {
         this.errorMessage = this.$i18n.t('home.audit-status-bar.withdraw-failure');
       }
-    },
-  },
+    }
+  }
 };
 </script>

@@ -17,12 +17,12 @@ export default {
       audit: null,
       auditUUID: '',
       status: 'loading',
-      token: null,
+      token: null
     };
   },
   components: {
     Entrance,
-    Home,
+    Home
   },
   computed: {
     auditApiClient: function createAuditApiClient() {
@@ -30,7 +30,7 @@ export default {
         baseURL: `${process.env.VUE_APP_API_ENDPOINT}/audit/${this.auditUUID}`,
         timeout: process.env.VUE_APP_API_TIMEOUT,
         headers: { Authorization: `Bearer ${this.token}` },
-        validateStatus: () => true,
+        validateStatus: () => true
       });
     },
     scanApiClient: function createScanApiClient() {
@@ -38,15 +38,15 @@ export default {
         baseURL: `${process.env.VUE_APP_API_ENDPOINT}/audit/${this.auditUUID}/scan`,
         timeout: process.env.API_REQUEST_TIMEOUT,
         headers: { Authorization: `Bearer ${this.token}` },
-        validateStatus: () => true,
+        validateStatus: () => true
       });
-    },
+    }
   },
   methods: {
     generateToken: async function generateToken(password) {
       this.status = 'loading';
       try {
-        const res = await this.auditApiClient.post('/tokens', { password });
+        const res = await this.auditApiClient.post('/tokens/', { password });
         switch (res.status) {
           case 200:
             this.token = res.data.token;
@@ -70,7 +70,7 @@ export default {
     },
     getAudit: async function getAudit() {
       try {
-        const res = await this.auditApiClient.get();
+        const res = await this.auditApiClient.get('/');
         switch (res.status) {
           case 200:
           case 304:
@@ -90,14 +90,17 @@ export default {
       } catch (e) {
         this.status = 'unknown-error';
       }
-    },
+    }
   },
   created: function created() {
-    this.auditUUID = window.location.hash.substring(2) || '';
-    window.eventBus.$on('TOKEN_REQUESTED', (password) => {
+    this.auditUUID = window.location.hash.substring(2).replace('/', '') || '';
+    window.eventBus.$on('TOKEN_REQUESTED', password => {
       this.generateToken(password);
     });
-  },
+    window.eventBus.$on('RELOAD_REQUESTED', () => {
+      this.getAudit();
+    });
+  }
 };
 </script>
 
@@ -106,7 +109,7 @@ html {
   height: 100%;
 }
 body {
-  height:100%;
+  height: 100%;
   background-color: #f0f0f0;
 }
 </style>

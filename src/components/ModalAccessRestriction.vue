@@ -8,7 +8,7 @@
         </div>
         <div class="modal-body">
           <p>
-            {{ $t('home.modal.access-restriction.message') }}<br>
+            {{ $t('home.modal.access-restriction.message') }}<br />
             <small class="form-text text-danger">{{ errorMessage }}</small>
           </p>
           <div class="container mt-4">
@@ -29,18 +29,28 @@
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <div class="input-group-text">
-                      <input type="checkbox" v-model="isPasswordRestricted">
+                      <input type="checkbox" v-model="isPasswordRestricted" />
                     </div>
                   </div>
-                  <input type="password" class="form-control form-control-sm" v-model="password" :placeholder="$t('home.modal.access-restriction.password')" :disabled="!isPasswordRestricted">
+                  <input
+                    type="password"
+                    class="form-control form-control-sm"
+                    v-model="password"
+                    :placeholder="$t('home.modal.access-restriction.password')"
+                    :disabled="!isPasswordRestricted"
+                  />
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ $t('home.modal.access-restriction.cancel') }}</button>
-          <button type="button" class="btn btn-primary" @click="applyRestriction">{{ $t('home.modal.access-restriction.ok') }}</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            {{ $t('home.modal.access-restriction.cancel') }}
+          </button>
+          <button type="button" class="btn btn-primary" @click="applyRestriction">
+            {{ $t('home.modal.access-restriction.ok') }}
+          </button>
         </div>
       </div>
     </div>
@@ -53,36 +63,38 @@ export default {
   props: {
     audit: {
       type: Object,
-      required: true,
+      required: true
     },
     auditApiClient: {
       type: Function,
-      required: true,
-    },
+      required: true
+    }
   },
   data() {
     return {
       password: '',
       errorMessage: '',
       isIpRestricted: this.audit.ip_restriction,
-      isPasswordRestricted: this.audit.password_protection,
+      isPasswordRestricted: this.audit.password_protection
     };
   },
   methods: {
     applyRestriction: async function applyRestriction() {
       if (this.isPasswordRestricted && this.password.length < process.env.VUE_APP_MIN_PASSWORD_LENGTH) {
-        this.errorMessage = this.$i18n.t('home.modal.access-restriction.error-invalid-password', { minLength: process.env.VUE_APP_MIN_PASSWORD_LENGTH });
+        this.errorMessage = this.$i18n.t('home.modal.access-restriction.error-invalid-password', {
+          minLength: process.env.VUE_APP_MIN_PASSWORD_LENGTH
+        });
         return;
       }
       try {
         const request = {
           ip_restriction: this.isIpRestricted,
-          password_protection: this.isPasswordRestricted,
+          password_protection: this.isPasswordRestricted
         };
         if (this.isPasswordRestricted) {
           request.password = this.password;
         }
-        const res = await this.auditApiClient.patch(null, request);
+        const res = await this.auditApiClient.patch('/', request);
         switch (res.status) {
           case 200:
             window.location.reload(true);
@@ -93,7 +105,7 @@ export default {
       } catch (e) {
         this.errorMessage = this.$i18n.t('home.modal.access-restriction.error-general');
       }
-    },
-  },
+    }
+  }
 };
 </script>

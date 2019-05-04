@@ -14,17 +14,19 @@
     "@fortawesome/vue-fontawesome": "^0.1.1",
     "axios": "^0.18.0",
     "bootstrap": "^4.1.1",
-    "jquery": "^3.3.1",
+    "jquery": "^3.4.1",
     "moment": "^2.22.2",
     "popper.js": "^1.14.3",
     "vue": "^2.5.16",
     "vue-i18n": "^8.0.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.0-rc.5",
-    "@vue/cli-plugin-eslint": "^3.0.0-rc.5",
-    "@vue/cli-service": "^3.0.0-rc.5",
+    "@vue/cli-plugin-babel": "^3.7.0",
+    "@vue/cli-plugin-eslint": "^3.7.0",
+    "@vue/cli-service": "^3.7.0",
     "@vue/eslint-config-airbnb": "^3.0.0-rc.5",
+    "prettier": "^1.17.0",
+    "prettier-webpack-plugin": "^1.2.0",
     "vue-template-compiler": "^2.5.16"
   },
   "eslintConfig": {
@@ -40,6 +42,10 @@
       "max-len": 0,
       "no-alert": 0,
       "no-console": 0,
+      "comma-dangle": 0,
+      "arrow-parens": 0,
+      "function-paren-newline": 0,
+      "import/no-extraneous-dependencies": 0,
       "vue/attribute-hyphenation": [
         "error",
         "always"

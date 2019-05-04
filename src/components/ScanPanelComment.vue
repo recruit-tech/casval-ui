@@ -3,14 +3,19 @@
     <div class="d-flex align-items-start flex-row">
       <div class="py-1">
         <small class="text-secondary">
-          {{ $t('home.scan.result.fill-reason', { reminingLength: reminingStringLength }) }}<br>
+          {{ $t('home.scan.result.fill-reason', { reminingLength: reminingStringLength }) }}<br />
           <span class="text-danger">{{ errorMessage }}</span>
         </small>
       </div>
     </div>
     <div class="align-items-start flex-row">
       <div class="py-1">
-        <textarea class="form-control form-control-sm" rows="5" :placeholder="$t('home.scan.result.reason')" v-model="comment"></textarea>
+        <textarea
+          class="form-control form-control-sm"
+          rows="5"
+          :placeholder="$t('home.scan.result.reason')"
+          v-model="comment"
+        ></textarea>
       </div>
     </div>
     <div class="pt-3">
@@ -35,17 +40,17 @@ export default {
   props: {
     scan: {
       type: Object,
-      required: true,
+      required: true
     },
     scanApiClient: {
       type: Function,
-      required: true,
-    },
+      required: true
+    }
   },
   data() {
     return {
       errorMessage: '',
-      comment: this.scan.comment,
+      comment: this.scan.comment
     };
   },
   methods: {
@@ -54,8 +59,8 @@ export default {
     },
     registerComment: async function registerComment() {
       try {
-        const res = await this.scanApiClient.patch(this.scan.uuid, {
-          comment: this.comment,
+        const res = await this.scanApiClient.patch(`${this.scan.uuid}/`, {
+          comment: this.comment
         });
         switch (res.status) {
           case 200: {
@@ -71,13 +76,13 @@ export default {
       } catch (e) {
         this.errorMessage = `判断理由の登録に失敗しました（${e.message}）`;
       }
-    },
+    }
   },
   computed: {
     reminingStringLength: function getReminingStringLength() {
       const maxLength = 1000;
       return maxLength - this.comment.length;
-    },
-  },
+    }
+  }
 };
 </script>

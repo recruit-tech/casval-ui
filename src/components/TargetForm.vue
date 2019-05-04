@@ -4,7 +4,12 @@
       <div class="col">
         <div class="d-flex flex-row">
           <div class="mr-auto w-100 pr-3">
-            <input type="text" class="form-control" v-model="target" :placeholder="$t('home.target-form.ip-address-or-host-name')">
+            <input
+              type="text"
+              class="form-control"
+              v-model="target"
+              :placeholder="$t('home.target-form.ip-address-or-host-name')"
+            />
           </div>
           <div>
             <button class="btn w-100 btn-primary">{{ $t('home.target-form.register-target') }}</button>
@@ -22,23 +27,27 @@ export default {
   props: {
     audit: {
       type: Object,
-      required: true,
+      required: true
     },
     scanApiClient: {
       type: Function,
-      required: true,
-    },
+      required: true
+    }
   },
   data() {
     return {
       target: '',
-      errorMessage: '',
+      errorMessage: ''
     };
   },
   methods: {
     addTarget: async function addTarget() {
       try {
-        const res = await this.scanApiClient.post(null, { target: this.target });
+        if (this.target.length === 0) {
+          this.errorMessage = this.$i18n.t('home.target-form.status.target-is-empty');
+          return;
+        }
+        const res = await this.scanApiClient.post('/', { target: this.target });
         switch (res.status) {
           case 200:
           case 304:
@@ -47,17 +56,15 @@ export default {
             window.eventBus.$emit('SCAN_REGISTERED', res.data.uuid);
             break;
           case 400: {
-            const message = res.data.Message;
+            const message = JSON.stringify(res.data.message);
             if (message.indexOf('target-is-not-fqdn-or-ipv4') >= 0) {
               this.errorMessage = this.$i18n.t('home.target-form.status.target-is-not-fqdn-or-ipv4');
-            } else if (message.indexOf('audit-submitted') >= 0) {
+            } else if (message.indexOf('Audit has been submitted or approved') >= 0) {
               this.errorMessage = this.$i18n.t('home.target-form.status.audit-submitted');
             } else if (message.indexOf('target-is-private-ip') >= 0) {
               this.errorMessage = this.$i18n.t('home.target-form.status.target-is-private-ip');
             } else if (message.indexOf('could-not-resolve-target-fqdn') >= 0) {
               this.errorMessage = this.$i18n.t('home.target-form.status.could-not-resolve-target-fqdn');
-            } else if (message.indexOf('target-is-empty') >= 0) {
-              this.errorMessage = this.$i18n.t('home.target-form.status.target-is-empty');
             } else {
               this.errorMessage = message;
             }
@@ -72,7 +79,7 @@ export default {
       } catch (e) {
         this.errorMessage = this.$i18n.t('home.target-form.status.unknown-error');
       }
-    },
-  },
+    }
+  }
 };
 </script>

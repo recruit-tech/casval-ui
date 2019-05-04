@@ -8,23 +8,38 @@
         </div>
         <div class="modal-body">
           <p>
-            {{ $t('home.modal.contacts.message') }}<br>
+            {{ $t('home.modal.contacts.message') }}<br />
             <small class="form-text text-danger">{{ errorMessage }}</small>
           </p>
           <div class="py-1">
             <div class="row pb-2" v-for="(contact, index) in contacts" :key="index">
               <div class="col-4">
-                <input class="form-control form-control-sm" v-model="contact.name" :placeholder="$t('home.modal.contacts.name')" @keydown="addInputForm(index)">
+                <input
+                  class="form-control form-control-sm"
+                  v-model="contact.name"
+                  :placeholder="$t('home.modal.contacts.name')"
+                  @keydown="addInputForm(index)"
+                />
               </div>
               <div class="col">
-                <input class="form-control form-control-sm" v-model="contact.email" value="" :placeholder="$t('home.modal.contacts.email')" @keydown="addInputForm(index)">
+                <input
+                  class="form-control form-control-sm"
+                  v-model="contact.email"
+                  value=""
+                  :placeholder="$t('home.modal.contacts.email')"
+                  @keydown="addInputForm(index)"
+                />
               </div>
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ $t('home.modal.contacts.cancel') }}</button>
-          <button type="button" class="btn btn-primary" @click="changeContacts">{{ $t('home.modal.contacts.ok') }}</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            {{ $t('home.modal.contacts.cancel') }}
+          </button>
+          <button type="button" class="btn btn-primary" @click="changeContacts">
+            {{ $t('home.modal.contacts.ok') }}
+          </button>
         </div>
       </div>
     </div>
@@ -40,17 +55,17 @@ export default {
   props: {
     audit: {
       type: Object,
-      required: true,
+      required: true
     },
     auditApiClient: {
       type: Function,
-      required: true,
-    },
+      required: true
+    }
   },
   data() {
     return {
       contacts: this.audit.contacts,
-      errorMessage: '',
+      errorMessage: ''
     };
   },
   methods: {
@@ -63,11 +78,11 @@ export default {
       this.errorMessage = '';
 
       // eslint-disable-next-line arrow-body-style
-      const filteredContacts = this.contacts.filter((item) => {
+      const filteredContacts = this.contacts.filter(item => {
         return item.name.length > 0 || item.email.length > 0;
       });
 
-      filteredContacts.forEach((item) => {
+      filteredContacts.forEach(item => {
         const emailValidation = /^[\w.-]+@([\w-]+.)+\w+$/;
         if (item.email.length === 0) {
           this.errorMessage = this.$i18n.t('home.modal.contacts.error-no-email', { name: item.name });
@@ -85,8 +100,8 @@ export default {
       }
 
       try {
-        const res = await this.auditApiClient.patch(null, {
-          contacts: filteredContacts,
+        const res = await this.auditApiClient.patch('/', {
+          contacts: filteredContacts
         });
         switch (res.status) {
           case 200:
@@ -99,10 +114,10 @@ export default {
       } catch (e) {
         this.errorMessage = this.$i18n.t('home.modal.contacts.error-general');
       }
-    },
+    }
   },
   created: function created() {
     this.contacts.push({ name: '', email: '' });
-  },
+  }
 };
 </script>
