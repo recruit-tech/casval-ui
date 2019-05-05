@@ -8,7 +8,7 @@
               <b>
                 <a :name="scan.uuid">{{ scan.target }}</a>
               </b>
-              <small class="text-muted" style="opacity: 0.33"> ({{ scan.uuid.toUpperCase().substr(0, 6) }})</small>
+              <small class="text-muted" style="opacity: 0.33"> ({{ scan.uuid.toUpperCase().substr(24, 8) }})</small>
             </span>
             <span class="float-right">
               <button type="button" class="close" @click="deleteScan"><span>&times;</span></button>

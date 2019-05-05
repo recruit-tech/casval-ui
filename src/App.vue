@@ -35,7 +35,7 @@ export default {
     },
     scanApiClient: function createScanApiClient() {
       return axios.create({
-        baseURL: `${process.env.VUE_APP_API_ENDPOINT}/audit/${this.auditUUID}/scan`,
+        baseURL: `${process.env.VUE_APP_API_ENDPOINT}/scan`,
         timeout: process.env.API_REQUEST_TIMEOUT,
         headers: { Authorization: `Bearer ${this.token}` },
         validateStatus: () => true
@@ -94,6 +94,8 @@ export default {
   },
   created: function created() {
     this.auditUUID = window.location.hash.substring(2).replace('/', '') || '';
+    this.auditUUID += '00000000';
+
     window.eventBus.$on('TOKEN_REQUESTED', password => {
       this.generateToken(password);
     });

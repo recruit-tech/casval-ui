@@ -43,7 +43,7 @@
             <p class="h4 text-dark mb-3">
               <b>{{ audit.name }}</b>
             </p>
-            <target-form :audit="audit" :scan-api-client="scanApiClient"></target-form>
+            <target-form :audit="audit" :audit-api-client="auditApiClient"></target-form>
           </div>
         </div>
       </div>

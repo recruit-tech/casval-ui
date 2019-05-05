@@ -29,7 +29,7 @@ export default {
       type: Object,
       required: true
     },
-    scanApiClient: {
+    auditApiClient: {
       type: Function,
       required: true
     }
@@ -47,7 +47,7 @@ export default {
           this.errorMessage = this.$i18n.t('home.target-form.status.target-is-empty');
           return;
         }
-        const res = await this.scanApiClient.post('/', { target: this.target });
+        const res = await this.auditApiClient.post('/scan/', { target: this.target });
         switch (res.status) {
           case 200:
           case 304:
