@@ -15,24 +15,24 @@
             </span>
           </div>
           <div class="card-header bg-white">
-            <p class="card-text text-primary" v-if="scan.calculatedState === 'unscheduled'">
+            <b class="card-text text-primary" v-if="scan.calculatedState === 'unscheduled'">
               {{ $t('home.scan.status.unscheduled') }}
-            </p>
-            <p class="card-text text-secondary" v-else-if="scan.calculatedState === 'scheduled'">
+            </b>
+            <b class="card-text text-dark" v-else-if="scan.calculatedState === 'scheduled'">
               {{ $t('home.scan.status.scheduled') }}
-            </p>
-            <p class="card-text text-danger" v-else-if="scan.calculatedState === 'failure'">
+            </b>
+            <b class="card-text text-danger" v-else-if="scan.calculatedState === 'failure'">
               <font-awesome-icon icon="exclamation-circle"></font-awesome-icon> {{ $t('home.scan.status.failure') }}
-            </p>
-            <p class="card-text text-secondary" v-else-if="scan.calculatedState === 'completed'">
+            </b>
+            <b class="card-text text-dark" v-else-if="scan.calculatedState === 'completed'">
               {{ $t('home.scan.status.completed') }}
-            </p>
-            <p class="card-text text-danger" v-else-if="scan.calculatedState === 'unsafe'">
+            </b>
+            <b class="card-text text-danger" v-else-if="scan.calculatedState === 'unsafe'">
               <font-awesome-icon icon="exclamation-circle"></font-awesome-icon> {{ $t('home.scan.status.unsafe') }}
-            </p>
-            <p class="card-text text-secondary" v-else>
+            </b>
+            <b class="card-text text-secondary" v-else>
               <font-awesome-icon icon="spinner" pulse></font-awesome-icon> {{ $t('home.scan.status.loading') }}
-            </p>
+            </b>
           </div>
           <div class="card-body">
             <scan-panel-comment v-if="requireComment" :scan="scan" :scan-api-client="scanApiClient">

@@ -1,8 +1,7 @@
 <template>
   <div>
-    <div class="py-1">
-      <small class="text-secondary">
-        <font-awesome-icon icon="calendar" class="mr-1"></font-awesome-icon>
+    <div class="pb-1">
+      <small class="text-dark">
         {{ schedule }}
       </small>
     </div>
@@ -11,7 +10,7 @@
         <div class="col text-right">
           <button
             class="
-          btn btn-secondary"
+          btn btn-dark"
             @click="deleteScanSchedule"
           >
             {{ $t('home.scan.cancel') }}

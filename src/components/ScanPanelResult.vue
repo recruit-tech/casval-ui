@@ -1,11 +1,10 @@
 <template>
   <div>
     <div>
-      <small class="text-secondary" v-if="!isFixRequired">
-        <font-awesome-icon icon="check-circle" class="mr-2"></font-awesome-icon
-        >{{ $t('home.scan.result.no-critical-issues') }}
+      <small class="text-dark" v-if="!isFixRequired">
+        {{ $t('home.scan.result.no-critical-issues') }}
       </small>
-      <small class="text-secondary" v-for="result in scan.results" :key="result.id">
+      <small class="text-dark" v-for="result in scan.results" :key="result.id">
         <span v-if="result.fix_required === 'REQUIRED'">
           <a :href="scan['report_url']">
             <font-awesome-icon icon="exclamation-circle" class="mr-2"></font-awesome-icon>{{ result.name }} -
@@ -20,7 +19,7 @@
       </small>
     </div>
     <div class="pt-3">
-      <div class="form-row">
+      <div class="form-row" v-if="isFixRequired">
         <div class="col text-right">
           <button
             class="btn mr-3"
