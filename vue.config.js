@@ -1,6 +1,7 @@
 const PrettierPlugin = require('prettier-webpack-plugin');
 
 module.exports = {
+  assetsDir: '',
   lintOnSave: true,
   configureWebpack: {
     plugins: [
