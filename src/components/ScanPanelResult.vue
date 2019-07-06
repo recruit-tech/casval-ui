@@ -1,6 +1,7 @@
 <template>
   <div>
     <div>
+      <small class="text-dark"> {{ scanEndedAt }}<br /> </small>
       <small class="text-dark" v-if="isSeverityUnrated">
         <font-awesome-icon icon="clock" class="mr-1"></font-awesome-icon>
         {{ $t('home.scan.result.severity-unrated') }}
@@ -54,6 +55,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 import ScanPanelScheduler from './ScanPanelScheduler.vue';
 
 export default {
@@ -82,6 +84,11 @@ export default {
     },
     setReschedule: function setReschedule() {
       this.$parent.requireReschedule = true;
+    },
+    getUtcTime: function getUtcTime(time) {
+      moment.locale(this.$i18n.locale);
+      const utcOffset = moment().utcOffset();
+      return moment(time, 'YYYY-MM-DD hh:mm:ss').add(utcOffset, 'minutes');
     }
   },
   computed: {
@@ -90,6 +97,14 @@ export default {
     },
     isSeverityUnrated: function isSeverityUnrated() {
       return this.scan.results.some(result => result.fix_required === 'UNDEFINED');
+    },
+    scanEndedAt: function scanEndedAt() {
+      let endedAt = this.getUtcTime(this.scan.ended_at);
+      if (endedAt.year() < 2000) {
+        return '';
+      }
+      endedAt = endedAt.format(this.$i18n.t('home.scan.scantime'));
+      return this.$i18n.t('home.scan.scan-ended', { endedAt });
     }
   },
   mounted() {

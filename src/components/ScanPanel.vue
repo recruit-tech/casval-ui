@@ -111,6 +111,10 @@ export default {
   },
   methods: {
     deleteScan: async function deleteScan() {
+      if (window.confirm(this.$i18n.t('home.scan.confirm-deletion')) !== true) {
+        return;
+      }
+
       try {
         const res = await this.scanApiClient.delete(`/${this.scan.uuid}/`);
         switch (res.status) {
