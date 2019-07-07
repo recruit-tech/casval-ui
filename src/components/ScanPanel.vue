@@ -28,7 +28,7 @@
               {{ $t('home.scan.status.severity-unrated') }}
             </b>
             <b class="card-text text-dark" v-else-if="scan.calculatedState === 'completed'">
-              {{ $t('home.scan.status.completed') }}
+              <font-awesome-icon icon="check-circle"></font-awesome-icon> {{ $t('home.scan.status.completed') }}
             </b>
             <b class="card-text text-danger" v-else-if="scan.calculatedState === 'unsafe'">
               <font-awesome-icon icon="exclamation-circle"></font-awesome-icon> {{ $t('home.scan.status.unsafe') }}
