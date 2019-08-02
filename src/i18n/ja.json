@@ -46,10 +46,14 @@
         "severity-unrated": "深刻度の評価が完了するまでお待ち下さい。",
         "no-critical-issues": "深刻な脆弱性は見つかりませんでした。",
         "download": "検査結果をダウンロード",
+        "write-comment": "コメントを書く",
         "ignore": "修正不要と判断",
         "reschedule": "再検査を予約",
         "fill-reason": "修正不要と判断した理由を入力してください（あと {reminingLength} 文字）",
+        "fill-comment": "コメントを入力してください（あと {reminingLength} 文字）",
+        "comment": "コメント",
         "reason": "判断理由",
+        "submit-comment": "コメントを登録",
         "submit-reason": "判断理由を登録"
       }
     },
