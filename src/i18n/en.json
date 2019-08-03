@@ -34,6 +34,7 @@
       "time-unspecified": "No schedule time specified",
       "end-datetime": "Scan end by",
       "schedule": "Schedule scan session",
+      "scan-from-api": "Scan from API",
       "error-general": "Failed to schedule the session",
       "scheduled": "Scan the target between {start} - {end}.",
       "source-ip-notification": "The audit attempts will be coming from {sourceIp}.",
@@ -96,6 +97,11 @@
         "cancel": "Cancel",
         "error-invalid-password": "Specify password that length is more than or equals to {minLength}",
         "error-general": "Failed to apply access control"
+      },
+      "scan-from-api": {
+        "title": "Scan from API",
+        "message": "You can schedule a scan session from CI by using following curl command.",
+        "cancel": "キャンセル"
       },
       "scan-warning": {
         "title": "Caution",

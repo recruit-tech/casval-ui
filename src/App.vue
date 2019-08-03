@@ -1,7 +1,13 @@
 <template>
   <div id="app" class="h-100">
     <entrance :status="status" v-if="status !== 'loaded'"></entrance>
-    <home :audit="audit" :audit-api-client="auditApiClient" :scan-api-client="scanApiClient" v-else></home>
+    <home
+      :audit="audit"
+      :audit-api-client="auditApiClient"
+      :scan-api-client="scanApiClient"
+      :restricted-token="restrictedToken"
+      v-else
+    ></home>
   </div>
 </template>
 
