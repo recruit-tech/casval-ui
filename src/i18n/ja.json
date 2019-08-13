@@ -100,7 +100,8 @@
       },
       "scan-from-api": {
         "title": "APIによる検査",
-        "message": "以下のcurlコマンドを用いて、CIから検査を行うことができます。",
+        "message1": "以下のcurlコマンドを用いて、CIから検査を行うことができます。",
+        "message2": "検査結果をSlackに通知する場合、<b>slack_webhook_url</b> に <a href=\"https://api.slack.com/incoming-webhooks\" class=\"text-dark\" target=\"_blank\" rel=\"noopener noreferrer\">Incoming Webhook URL</a> を指定ください。",
         "cancel": "キャンセル"
       },
       "scan-warning": {
