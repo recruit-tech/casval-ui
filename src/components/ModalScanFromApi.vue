@@ -50,7 +50,6 @@ export default {
   },
   methods: {
     selectAll: function selectAll() {
-      window.aa = this;
       this.select();
     }
   },
